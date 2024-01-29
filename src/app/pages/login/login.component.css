@@ -1,0 +1,28 @@
+.container {
+    margin-top: 1%;
+}
+
+.logo {
+    width: 310px;
+    height: 280px;
+}
+
+.botaoconfig {
+    display: flex;
+    justify-content: center;
+}
+
+.distanciaajuste {
+    margin-top: 2%;
+}
+
+.ajusteAjuda {
+    margin-left: 10px;
+}
+
+.caixatxt {
+    border-radius: 100px;
+    width: 1100px;
+}
+
+
