@@ -1,0 +1,50 @@
+<app-navbarvendas></app-navbarvendas>
+
+<div class="container">
+  <div class="row">
+    <div class="col-12 col-lg-8 offset-lg-4 text-lg-end">
+      <div class="blocotitulo">
+        <h1 class="titulo p-2">Selecione a mesa para realizar o pedido</h1>
+      </div>
+    </div>
+  </div>
+
+  <div class="row justify-content-around align-items-center">
+    <div
+      class="col-12 col-lg-4 d-flex justify-content-center justify-content-lg-start mb-3"
+    >
+      <div class="ajuste">
+        <img src="assets/img/logo.png" class="logo" />
+        <div class="dividir">
+          <button
+            class="btn btn-danger botaolargura"
+            routerLink="/abrirmesa"
+            routerLinkActive="active"
+          >
+            Abrir mesa
+          </button>
+          <button
+            class="btn btn-danger botaolargura"
+            routerLink="/fecharmesa"
+            routerLinkActive=""
+          >
+            Fechar mesa
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <div class="container">
+      <div class="row">
+        <div class="col-md-4" *ngFor="let mesa of mesas">
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title">{{ mesa.nome }}</h5>
+              <p class="card-text">ID: {{ mesa.id }}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

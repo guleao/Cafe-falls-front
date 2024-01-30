@@ -4,19 +4,15 @@ import { Observable } from 'rxjs';
 import { Login } from '../models/login-model';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class LoginService {
-
   http = inject(HttpClient);
-  API = "http://localhost:8080/api/login";
+  API = 'http://localhost:8080/api/login';
 
-
-  constructor() { }
+  constructor() {}
 
   save(login: Login): Observable<Login> {
     return this.http.post<Login>(this.API, login);
   }
-
-  
 }
