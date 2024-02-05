@@ -1,0 +1,26 @@
+
+
+.logo {
+    
+    width: 300px;
+}
+
+.centralizacao {
+
+    margin-bottom: 50px;
+}
+
+
+.btn1 {
+
+    &::before{
+        width: 0;
+        height: 100%;
+    }
+
+    &:hover{
+        &:before{
+            width: 100%;
+        }
+    }
+}

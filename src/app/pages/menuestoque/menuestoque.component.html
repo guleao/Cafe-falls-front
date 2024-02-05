@@ -1,0 +1,277 @@
+<app-navbarvendas></app-navbarvendas>
+
+<div class="container">
+  <div class="p-2 row">
+    <h2 class="col-lg-6 display-6 m-3">Sessão de controle de estoque</h2>
+  </div>
+
+  <div class="distancia offset-4">
+    <div class="d-flex justify-content-center">
+      <img
+        routerLink="/lista"
+        routerLinkActive="active"
+        class="listaopc"
+        src="assets/img/listaprodutos.png"
+        width="300px"
+      />
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-4">
+      <div class="d-flex p-5">
+        <img src="assets/img/logo.png" />
+      </div>
+    </div>
+
+    <div class="col-4">
+      <div class="d-flex justify-content-end">
+        <img
+          (click)="OpenModalColocarId()"
+          class="opcao"
+          src="assets/img/editaropc.png"
+        />
+      </div>
+      <div class="d-flex justify-content-end">
+        <img
+          (click)="OpenModalNovo()"
+          class="opcao"
+          src="assets/img/novoopc.png"
+        />
+      </div>
+    </div>
+
+    <div class="col-4">
+      <div class="d-flex justify-content-start">
+        <img
+          routerLink="/entrada"
+          routerLinkActive="active"
+          class="opcao"
+          src="assets/img/entradaopc.png"
+        />
+      </div>
+      <div class="d-flex justify-content-start">
+        <img
+          (click)="OpenModalPerca()"
+          class="opcao"
+          src="assets/img/percaopc.png"
+        />
+      </div>
+    </div>
+  </div>
+
+  <div class="modal" tabindex="-1" id="modalEditar">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header d-flex justify-content-center">
+          <h5 class="modal-title">Editar item</h5>
+        </div>
+        <div class="modal-body">
+          <div class="row d-flex justify-content-center">
+            <input
+              class="caixa mb-2"
+              id="nome"
+              placeholder="Nome do item"
+              [(ngModel)]="produtoParaEditar.nomeProduto"
+            />
+            <input
+              class="caixa mb-2"
+              id="desc"
+              placeholder="Descrição do item"
+              [(ngModel)]="produtoParaEditar.descricaoItem"
+            />
+            <input
+              class="caixa mb-2"
+              id="precocompra"
+              placeholder="Preço da compra"
+            />
+            <input
+              class="caixa mb-2"
+              id="precovenda"
+              placeholder="Preço da venda"
+            />
+          </div>
+        </div>
+        <div class="modal-footer d-flex justify-content-center">
+          <button
+            (click)="CloseModalEditar()"
+            type="button"
+            class="btn btn-outline-dark"
+            data-bs-dismiss="modal"
+          >
+            Cancelar
+          </button>
+          <button
+            (click)="CloseModalEditar()"
+            type="button"
+            class="btn btn-danger"
+          >
+            Adicionar Item
+          </button>
+          <button
+            (click)="OpenModalExcluir()"
+            type="button"
+            class="btn btn-outline-danger"
+          >
+            Excluir Item
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal" tabindex="-1" id="modalNovo">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header d-flex justify-content-center">
+          <h5 class="modal-title">Cadastrar novo item</h5>
+        </div>
+        <div class="modal-body">
+          <div class="row d-flex justify-content-center">
+            <input
+              class="caixa mb-2"
+              id="nomeItem"
+              placeholder="Nome do item"
+              [(ngModel)]="nomeProduto"
+            />
+            <input
+              class="caixa mb-2"
+              id="descricaoItem"
+              placeholder="Descrição do item"
+              [(ngModel)]="descricaoProduto"
+            />
+            <input
+              class="caixa mb-2"
+              id="precoCompra"
+              placeholder="Preço da compra"
+              [(ngModel)]="precoCompra"
+            />
+            <input
+              class="caixa mb-2"
+              id="precoVenda"
+              placeholder="Preço da venda"
+              [(ngModel)]="precoVenda"
+            />
+          </div>
+        </div>
+        <div class="modal-footer d-flex justify-content-center">
+          <button
+            (click)="CloseModalNovo()"
+            type="button"
+            class="btn btn btn-outline-dark"
+            data-bs-dismiss="modal"
+          >
+            Cancelar
+          </button>
+          <button
+            (click)="adicionarProdutoALista()"
+            type="button"
+            class="btn btn-danger"
+          >
+            Adicionar Item
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal" tabindex="-1" id="modalPerca">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header d-flex justify-content-center">
+        <h5 class="modal-title">Perca de Item</h5>
+      </div>
+      <div class="modal-body">
+        <div class="row d-flex justify-content-center">
+          <input class="caixa mb-2" id="nome" placeholder="Nome do item" />
+          <input class="caixa mb-2" id="nome" placeholder="Quantidade" />
+        </div>
+      </div>
+      <div class="modal-footer d-flex justify-content-center">
+        <button
+          (click)="CloseModalPerca()"
+          type="button"
+          class="btn btn btn-outline-dark"
+          data-bs-dismiss="modal"
+        >
+          Cancelar
+        </button>
+        <button
+          (click)="CloseModalPerca()"
+          type="button"
+          class="btn btn-danger"
+        >
+          Adicionar Item
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal" tabindex="-1" id="modalExcluir">
+  <div class="modal-dialog d-flex justify-content-center">
+    <div class="modal-content excluir d-flex justify-content-center">
+      <div class="modal-header d-flex justify-content-center">
+        <h5 class="modal-title">Certeza que quer excluir?</h5>
+      </div>
+      <div class="modal-body d-flex justify-content-center">
+        Ao aceitar você excluirá o item permanentemente.
+      </div>
+      <div class="modal-footer d-flex justify-content-center">
+        <button
+          (click)="CloseModalExcluir()"
+          type="button"
+          class="btn btn-secondary"
+          data-bs-dismiss="modal"
+        >
+          Cancelar
+        </button>
+        <button
+          (click)="CloseModalExcluir()"
+          (click)="CloseModalEditar()"
+          type="button"
+          class="btn btn-danger"
+        >
+          Excluir Item
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal" tabindex="-1" id="modalColocarId">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header d-flex justify-content-center">
+        <h5 class="modal-title">Qual ID você deseja modificar?</h5>
+      </div>
+      <div class="modal-body">
+        <div class="row d-flex justify-content-center">
+          <input
+            class="caixa mb-2"
+            [(ngModel)]="idInserido"
+            placeholder="ID do produto"
+          />
+        </div>
+      </div>
+      <div class="modal-footer d-flex justify-content-center">
+        <button
+          (click)="CloseModalColocarId()"
+          type="button"
+          class="btn btn btn-outline-dark"
+          data-bs-dismiss="modal"
+        >
+          Cancelar
+        </button>
+        <button
+          (click)="OpenModalEditar()"
+          type="button"
+          class="btn btn-danger"
+        >
+          Selecionar ID
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

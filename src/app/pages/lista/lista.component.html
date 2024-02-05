@@ -1,0 +1,28 @@
+<app-navbarlista></app-navbarlista>
+
+<div class="container">
+  <h1 class="d-flex justify-content-center mt-3 mb-3">Lista de Produtos</h1>
+  <table class="table border border-dark">
+    <thead>
+      <tr>
+        <th scope="col">ID</th>
+        <th scope="col">Nome do produto:</th>
+        <th scope="col">Código</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let produto of lista">
+        <th>
+          {{ produto.id }}
+          <!-- Substitua 'nome' pela propriedade que você deseja exibir -->
+        </th>
+        <th>
+          {{ produto.nomeProduto }}
+        </th>
+        <th>
+          {{ produto.codigo }}
+        </th>
+      </tr>
+    </tbody>
+  </table>
+</div>
