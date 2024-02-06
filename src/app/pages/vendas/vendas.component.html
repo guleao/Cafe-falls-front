@@ -1,16 +1,23 @@
 <app-navbarvendas></app-navbarvendas>
 
-<div class="container-fluid">
+<div class="container">
   <div class="row justify-content-center">
     <div class="col-12 text-center">
-      <h1 class="p-2 display-5">Selecione a mesa para realizar o pedido</h1>
+      <h1 class="p-2 display-5 animate__animated animate__bounceIn">
+        Selecione a mesa para realizar o pedido
+      </h1>
     </div>
   </div>
 
-  <div class="row justify-content-center align-items-center m-5">
+  <div class="row d-flex justify-content-center align-items-center mt-5">
     <div class="col-12 col-md-4 text-center">
-      <img src="assets/img/logo.png" class="logo" />
-      <div class="d-flex justify-content-center">
+      <img
+        src="assets/img/logo.png"
+        class="logo animate__animated animate__pulse"
+      />
+      <div
+        class="d-flex justify-content-center animate__animated animate__bounceIn"
+      >
         <button
           class="btn btn-danger m-2"
           routerLink="/abrirmesa"
@@ -31,7 +38,7 @@
     <div class="col-12 col-md-8">
       <div class="row">
         <div class="col-6 col-md-3" *ngFor="let mesa of mesas">
-          <div class="card shadow m-1 p-1">
+          <div class="card shadow m-1 p-1 animate__animated animate__bounceIn">
             <div class="card-body">
               <h5 class="card-title">{{ mesa.nome }}</h5>
               <p class="card-text">ID:{{ mesa.id }}</p>

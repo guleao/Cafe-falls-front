@@ -3,14 +3,14 @@
     margin: 0;
     padding: 0;
 
+    
 
 }
 
-.vendasopc {
-    max-width: 1100px;
-    width: 100%;
-    cursor: pointer;
-    margin-left: 3px;
+.container {
+
+    max-width: 1800px;
+
 }
 
 .subtitulo {
@@ -31,3 +31,31 @@
 .centralizacao {
     margin-top: 55px;
 }
+
+.vendasopc {
+    max-width: 250px;
+    width: 100%;
+    cursor: pointer;
+    margin-left: 3px;
+    
+}
+
+.anim {
+    width: 100%;
+    display: block;
+    transition: transform .2s;
+    transform-origin: center center;
+}
+
+.anim:hover {
+   transform: scale(0.9);
+}
+
+@media( min-width: 1440px) {
+
+    .vendasopc {
+        max-width: 215px;
+        
+    }
+}
+

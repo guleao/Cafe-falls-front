@@ -1,4 +1,6 @@
-
+.opcao {
+    cursor: pointer;
+}
 
 @media (min-width: 1440px) {
     .opcao {

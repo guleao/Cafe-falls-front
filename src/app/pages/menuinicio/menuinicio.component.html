@@ -1,55 +1,56 @@
 <app-navbarmenuinicio></app-navbarmenuinicio>
 
-<div class="container-fluid">
+<div class="container">
   <div class="row">
-    <div class="col-lg-12 col-md-12">
-      <h1 class="d-flex justify-content-center">Bem-vindo</h1>
-      <h2 class="d-flex justify-content-center subtitulo">
+    <div class="col-lg-12 col-md-12 mt-2">
+      <h1 class="text-center animate__animated animate__bounceIn">Bem-vindo</h1>
+      <h2 class="text-center animate__animated animate__bounceIn">
         Sistema de gestão do Falls Café
       </h2>
     </div>
   </div>
 
-  <div class="row d-flex justify-content-center mt-md-5">
-    <div class="col-lg-6 col-md-4 col-6 mt-5 d-flex justify-content-center">
-      <img class="img-fluid d-flex" src="assets/img/logo.png" />
+  <div class="row mt-3 d-flex justify-content-center">
+    <div class="col-lg-6 col-md-4 col-6 d-flex justify-content-center">
+      <img
+        class="img-fluid d-flex justify-content-center animate__animated animate__pulse"
+        src="assets/img/logo.png"
+      />
     </div>
   </div>
 
-  <div class="row d-flex justify-content-center">
-    <div class="col-lg-1 col-md-3 col-5">
+  <div
+    class="row d-flex justify-content-center mt-4 animate__animated animate__bounceIn"
+  >
+    <div class="col-lg-2 col-md-3 col-5 d-flex justify-content-center">
       <a routerLink="/vendas" routerLinkActive="active">
-        <img
-          clasc="img-fluid"
-          class="vendasopc"
-          src="assets/img/opcvendas.png"
-        />
+        <img class="anim vendasopc" src="assets/img/opcvendas.png" />
       </a>
     </div>
-    <div class="col-lg-1 col-md-3 col-5">
+    <div class="col-lg-2 col-md-3 col-5 d-flex justify-content-center">
       <a>
         <img
           routerLink="/estoque"
           routerLinkActive="active"
-          class="vendasopc"
+          class="anim vendasopc"
           src="assets/img/opcestoque.png"
         />
       </a>
     </div>
 
-    <div class="col-lg-1 col-md-3 col-5">
+    <div class="col-lg-2 col-md-3 col-5 d-flex justify-content-center">
       <a>
         <img
           routerLink="/financeiro"
           routerLinkActive="active"
-          class="vendasopc"
+          class="anim vendasopc"
           src="assets/img/opcfinanceiro.png"
         />
       </a>
     </div>
-    <div class="col-lg-1 col-md-3 col-5">
+    <div class="col-lg-2 col-md-3 col-5 d-flex justify-content-center">
       <a>
-        <img class="vendasopc" src="assets/img/opcsuporte.png" />
+        <img class="anim vendasopc" src="assets/img/opcsuporte.png" />
       </a>
     </div>
   </div>

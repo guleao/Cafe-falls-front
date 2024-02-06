@@ -9,6 +9,8 @@ import { FecharmesaComponent } from './pages/fecharmesa/fecharmesa.component';
 import { EntradaitemComponent } from './pages/entradaitem/entradaitem.component';
 import { PedidoComponent } from './pages/pedido/pedido.component';
 import { FinanceiroComponent } from './pages/financeiro/financeiro.component';
+import { ConsultarComponent } from './pages/consultar/consultar.component';
+import { CompararComponent } from './pages/comparar/comparar.component';
 
 export const routes: Routes = [
   {
@@ -50,5 +52,13 @@ export const routes: Routes = [
   {
     path: 'financeiro',
     component: FinanceiroComponent,
+  },
+  {
+    path: 'consultar',
+    component: ConsultarComponent,
+  },
+  {
+    path: 'comparar',
+    component: CompararComponent,
   },
 ];

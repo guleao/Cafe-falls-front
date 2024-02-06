@@ -2,47 +2,58 @@
 
 <div class="container">
   <div class="row">
-    <h2 class="col-sm-12 col-md-12 display-6 text-center mb-5 mt-5">
+    <h2
+      class="col-sm-12 col-md-12 display-6 text-center mb-4 mt-4 animate__animated animate__bounceIn"
+    >
       Sessão de controle de estoque
     </h2>
   </div>
 
-  <div class="row mt-5">
-    <div
-      class="col-12 col-md-12 offset-lg-6 col-lg-6 d-flex justify-content-center"
-    >
-      <img
-        routerLink="/lista"
-        routerLinkActive="active"
-        class="listaopc img-fluid"
-        src="assets/img/listaprodutos.png"
-      />
-    </div>
-  </div>
-
   <div class="row">
-    <div class="col-12 col-md-12 col-lg-6 d-flex justify-content-center">
+    <div
+      class="col-12 col-md-12 col-lg-12 d-flex justify-content-center animate__animated animate__pulse"
+    >
       <img src="assets/img/logo.png" class="img-fluid" />
     </div>
+    <div class="row mt-3">
+      <div
+        class="col-12 col-md-12 col-lg-12 d-flex justify-content-center animate__animated animate__bounceIn"
+      >
+        <img
+          routerLink="/lista"
+          routerLinkActive="active"
+          class="listaopc img-fluid lista"
+          src="assets/img/listaprodutos.png"
+        />
+      </div>
+    </div>
 
-    <div class="col-12 col-md-12 col-lg-6 d-flex justify-content-center">
-      <img
-        routerLink="/entrada"
-        routerLinkActive="active"
-        class="m-3 imagem-centralizada"
-        src="assets/img/entradaopc.png"
-      />
+    <div class="row">
+      <div
+        class="col-12 col-md-12 d-flex justify-content-center animate__animated animate__bounceIn"
+      >
+        <img
+          routerLink="/entrada"
+          routerLinkActive="active"
+          class="m-3 imagem-centralizada listaopc"
+          src="assets/img/entradaopc.png"
+        />
 
-      <img
-        (click)="OpenModalPerca()"
-        class="m-3 imagem-centralizada"
-        src="assets/img/percaopc.png"
-      />
+        <img
+          (click)="OpenModalPerca()"
+          class="m-3 imagem-centralizada listaopc"
+          src="assets/img/percaopc.png"
+        />
+      </div>
     </div>
   </div>
 </div>
 
-<div class="modal" tabindex="-1" id="modalPerca">
+<div
+  class="modal animate__animated animate__bounceInUp"
+  tabindex="-1"
+  id="modalPerca"
+>
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header d-flex justify-content-center">
@@ -50,7 +61,9 @@
       </div>
       <div class="modal-body">
         <div class="row d-flex justify-content-center">
+          <p class="input-5 mb-2">Nome do item:</p>
           <input class="caixa mb-2" id="nome" placeholder="Nome do item" />
+          <p class="input-5 mb-2">Quantidade:</p>
           <input class="caixa mb-2" id="nome" placeholder="Quantidade" />
         </div>
       </div>
