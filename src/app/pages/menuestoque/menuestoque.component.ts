@@ -123,34 +123,32 @@ export class MenuestoqueComponent {
 
   /* INICIO DO CÓDIGO PARA AS MODALS FUNCIONAREM */
 
-  codigo: string = '';
-  nomeProduto = '';
-  descricaoProduto = '';
-  precoCompra = 0;
-  precoVenda = 0;
+  Nome_produto = '';
+  Descricao = '';
+  Preco_compra = 0;
+  Preco_venda = 0;
 
   constructor(private ProdutoService: ProdutoService) {
-    this.produtoParaEditar = new Produto(0, '', '', 0, 0, '');
+    this.produtoParaEditar = new Produto(0, '', '', 0, 0);
   }
 
   adicionarProdutoALista() {
     const id = this.ProdutoService.getProximoId();
-    if (this.nomeProduto.trim() !== '') {
+    if (this.Nome_produto.trim() !== '') {
       let novoProduto = new Produto(
         id,
-        this.nomeProduto,
-        this.descricaoProduto,
-        this.precoCompra,
-        this.precoVenda,
-        this.codigo
+        this.Nome_produto,
+        this.Descricao,
+        this.Preco_compra,
+        this.Preco_venda
       );
 
       this.ProdutoService.adicionarProduto(novoProduto);
 
-      this.nomeProduto = '';
-      this.descricaoProduto = '';
-      this.precoCompra = 0;
-      this.precoVenda = 0;
+      this.Nome_produto = '';
+      this.Descricao = '';
+      this.Preco_compra = 0;
+      this.Preco_venda = 0;
     }
 
     const modelDiv = document.getElementById('modalNovo');

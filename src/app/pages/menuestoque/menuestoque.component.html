@@ -5,7 +5,7 @@
     <h2 class="col-lg-6 display-6 m-3">Sessão de controle de estoque</h2>
   </div>
 
-  <div class="distancia offset-4">
+  <div class="distancia offset-4 col-md-12">
     <div class="d-flex justify-content-center">
       <img
         routerLink="/lista"
@@ -18,7 +18,7 @@
   </div>
 
   <div class="row">
-    <div class="col-4">
+    <div class="col-4 col-md-12">
       <div class="d-flex p-5">
         <img src="assets/img/logo.png" />
       </div>
@@ -68,17 +68,11 @@
         </div>
         <div class="modal-body">
           <div class="row d-flex justify-content-center">
-            <input
-              class="caixa mb-2"
-              id="nome"
-              placeholder="Nome do item"
-              [(ngModel)]="produtoParaEditar.nomeProduto"
-            />
+            <input class="caixa mb-2" id="nome" placeholder="Nome do item" />
             <input
               class="caixa mb-2"
               id="desc"
               placeholder="Descrição do item"
-              [(ngModel)]="produtoParaEditar.descricaoItem"
             />
             <input
               class="caixa mb-2"
@@ -132,25 +126,25 @@
               class="caixa mb-2"
               id="nomeItem"
               placeholder="Nome do item"
-              [(ngModel)]="nomeProduto"
+              [(ngModel)]="Nome_produto"
             />
             <input
               class="caixa mb-2"
               id="descricaoItem"
               placeholder="Descrição do item"
-              [(ngModel)]="descricaoProduto"
+              [(ngModel)]="Descricao"
             />
             <input
               class="caixa mb-2"
               id="precoCompra"
               placeholder="Preço da compra"
-              [(ngModel)]="precoCompra"
+              [(ngModel)]="Preco_compra"
             />
             <input
               class="caixa mb-2"
               id="precoVenda"
               placeholder="Preço da venda"
-              [(ngModel)]="precoVenda"
+              [(ngModel)]="Preco_venda"
             />
           </div>
         </div>

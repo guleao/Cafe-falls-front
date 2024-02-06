@@ -2,25 +2,44 @@
 
 <div class="container">
   <h1 class="d-flex justify-content-center mt-3 mb-3">Lista de Produtos</h1>
+
   <table class="table border border-dark">
     <thead>
       <tr>
         <th scope="col">ID</th>
         <th scope="col">Nome do produto:</th>
-        <th scope="col">Código</th>
+        <th scope="col">Descricao:</th>
+        <th scope="col">Preco compra:</th>
+        <th scope="col">Preco venda:</th>
       </tr>
     </thead>
     <tbody>
       <tr *ngFor="let produto of lista">
         <th>
-          {{ produto.id }}
+          {{ produto.idProduto }}
           <!-- Substitua 'nome' pela propriedade que você deseja exibir -->
         </th>
         <th>
-          {{ produto.nomeProduto }}
+          {{ produto.Nome_produto }}
         </th>
         <th>
-          {{ produto.codigo }}
+          {{ produto.Descricao }}
+        </th>
+        <th>
+          {{
+            produto.Preco_compra.toLocaleString("pt-BR", {
+              style: "currency",
+              currency: "BRL"
+            })
+          }}
+        </th>
+        <th>
+          {{
+            produto.Preco_venda.toLocaleString("pt-BR", {
+              style: "currency",
+              currency: "BRL"
+            })
+          }}
         </th>
       </tr>
     </tbody>
