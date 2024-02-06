@@ -1,0 +1,16 @@
+<app-navbarmesas></app-navbarmesas>
+
+<div class="container-fluid">
+  <div class="row mt-5 m-5">
+    <h1 class="text-center">Fechar mesas:</h1>
+    <div class="col-md-4 p-1" *ngFor="let mesa of mesas">
+      <div class="card shadow m-1 p-1">
+        <div class="card-body">
+          <h5 class="card-title">{{ mesa.nome }}</h5>
+          <p class="card-text">ID:{{ mesa.id }}</p>
+          <button class="btn btn-danger btn1">Fechar mesa</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

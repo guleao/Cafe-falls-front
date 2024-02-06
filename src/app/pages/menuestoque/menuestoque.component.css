@@ -1,28 +1,62 @@
 
+
 /* Ajeitar menu */
 
 .distancia {
     margin-bottom: 3px;
 }
 
-.opcao  {
-    width: 200px;
-    margin: 25px 0 0 0;
-    cursor: pointer;
-}
+
 
 .listaopc {
     cursor: pointer;
-    margin-right: 10px;
 }
 
 /* Modal estilização: */
 
-.caixa {
 
-    width: 300px;
+.imagem-centralizada {
+    width: 50px;
+    height: 50px;
+    object-fit: cover;
+    cursor: pointer;
+  }
 
-    border: 1px solid black;
-    margin-bottom: 2px;
-    border-radius: 3px;
-}
+/* Estilo para telas pequenas (celulares em paisagem e tablets pequenos, 576px e acima) */
+@media (min-width: 425px) {
+    .imagem-centralizada {
+      width: 150px;
+      height: 150px;
+    }
+  }
+
+@media (min-width: 576px) {
+    .imagem-centralizada {
+      width: 100px;
+      height: 100px;
+    }
+  }
+  
+  /* Estilo para telas médias (tablets, 768px e acima) */
+  @media (min-width: 768px) {
+    .imagem-centralizada {
+      width: 180px;
+      height: 180px;
+    }
+  }
+  
+  /* Estilo para telas grandes (desktops, 992px e acima) */
+  @media (min-width: 992px) {
+    .imagem-centralizada {
+      width: 220px;
+      height: 220px;
+    }
+  }
+  
+  /* Estilo para telas extra grandes (grandes desktops, 1200px e acima) */
+  @media (min-width: 1200px) {
+    .imagem-centralizada {
+      width: 300px;
+      height: 300px;
+    }
+  }

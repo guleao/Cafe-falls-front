@@ -1,0 +1,12 @@
+
+
+.scrolling-wrapper {
+    overflow-x: hidden;
+    overflow-y: scroll;
+    white-space: nowrap;
+  }
+  
+  .scrolling-wrapper > div {
+    display: inline-block;
+  }
+  

@@ -1,0 +1,15 @@
+
+
+@media (min-width: 1440px) {
+    .opcao {
+        width: 300px;
+        height: 75px;
+    }
+}
+
+@media (min-width: 768px) {
+    .opcao {
+        width: 250px;
+        height: 75px;
+    }
+}
