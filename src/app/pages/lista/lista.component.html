@@ -42,6 +42,70 @@
           }}
         </th>
       </tr>
+      <div>
+        <button class="btn btn-outline-danger">Editar</button>
+      </div>
     </tbody>
   </table>
+
+  <div class="row">
+    <div class="col-lg-12 col-">
+      <div class="d-flex justify-content-around">
+        <button class="btn btn-success" (click)="OpenModalNovo()">
+          Adicionar produto
+        </button>
+        <button class="btn btn-dark">Editar produto</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal" tabindex="-1" id="modalNovo">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Modal title</h5>
+      </div>
+      <div class="modal-body">
+        <p>Modal body text goes here.</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+          Close
+        </button>
+        <button type="button" class="btn btn-danger">Adicionar produto</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal" tabindex="-1" id="modalExcluir">
+  <div class="modal-dialog d-flex justify-content-center">
+    <div class="modal-content excluir d-flex justify-content-center">
+      <div class="modal-header d-flex justify-content-center">
+        <h5 class="modal-title">Certeza que quer excluir?</h5>
+      </div>
+      <div class="modal-body d-flex justify-content-center">
+        Ao aceitar você excluirá o item permanentemente.
+      </div>
+      <div class="modal-footer d-flex justify-content-center">
+        <button
+          (click)="CloseModalExcluir()"
+          type="button"
+          class="btn btn-secondary"
+          data-bs-dismiss="modal"
+        >
+          Cancelar
+        </button>
+        <button
+          (click)="CloseModalExcluir()"
+          (click)="CloseModalEditar()"
+          type="button"
+          class="btn btn-danger"
+        >
+          Excluir Item
+        </button>
+      </div>
+    </div>
+  </div>
 </div>
