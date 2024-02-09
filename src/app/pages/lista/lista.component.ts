@@ -4,27 +4,45 @@ import { RouterLink, RouterLinkActive } from '@angular/router';
 import { Produto } from '../../models/produto';
 import { CommonModule } from '@angular/common';
 import { ProdutoService } from '../../services/produto.service';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-lista',
   standalone: true,
-  imports: [NavbarlistaComponent, RouterLink, RouterLinkActive, CommonModule],
+  imports: [
+    NavbarlistaComponent,
+    RouterLink,
+    RouterLinkActive,
+    CommonModule,
+    FormsModule,
+  ],
   templateUrl: './lista.component.html',
   styleUrl: './lista.component.css',
 })
 export class ListaComponent implements OnInit {
   lista: Produto[] = [];
+  novoProduto: Produto = new Produto(0, '', '', 0, 0);
+  proximoId: number = 1;
 
   constructor(private produtoService: ProdutoService) {}
+
+  async addProdutoList() {
+    try {
+      const response = await this.produtoService.adicionarProduto(
+        this.novoProduto
+      );
+    } catch (error) {
+      console.log('Erro ao adicionar o produto', error);
+    }
+  }
+
+  editProduto() {
+    this.lista.map;
+  }
 
   async ngOnInit() {
     this.lista = await this.produtoService.getLista();
   }
-
-  Nome_produto = '';
-  Descricao = '';
-  Preco_compra = 0;
-  Preco_venda = 0;
 
   OpenModalEditar() {
     const modelDiv = document.getElementById('modalEditar');
@@ -42,7 +60,7 @@ export class ListaComponent implements OnInit {
   OpenModalNovo() {
     const modelDiv = document.getElementById('modalNovo');
     if (modelDiv != null) {
-      modelDiv.style.display = 'none';
+      modelDiv.style.display = 'block';
     }
   }
 

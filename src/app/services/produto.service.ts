@@ -16,15 +16,10 @@ export class ProdutoService {
     baseURL: 'http://127.0.0.1:8000/api',
   });
 
-  /* ADICIONAR O PRODUTO NA LISTA COM CÓDIGO ALEATÓRIO */
-  adicionarProduto(produto: Produto) {
-    this.lista.push(produto);
-    this.listaAtualizada.next([...this.lista]);
-  }
-
   async getLista(): Promise<Produto[]> {
     try {
       const response = (await this.http.get('/produto')).data.data; // Response é do tipo any[]
+
       const produtos: Produto[] = response.map((item: any) => {
         // Mapeie cada item da resposta para o tipo Produto
         const produto: Produto = {
@@ -45,14 +40,16 @@ export class ProdutoService {
       throw error;
     }
   }
-  getProximoId() {
-    return this.lista.length + 1;
-  }
 
-  /* ATUALIZAR PRODUTO DENTRO DA LISTA */
-
-  getProdutoId(idProduto: number): Produto | null {
-    let produto = this.lista.find((produto) => produto.idProduto === idProduto);
-    return produto ? produto : null;
+  async adicionarProduto(novoProduto: Produto): Promise<void> {
+    try {
+      const response = await this.http.post('/produto', novoProduto);
+      console.log('Produto adicionado', response);
+      this.lista.push(novoProduto);
+      this.listaAtualizada.next([...this.lista]);
+    } catch (error) {
+      console.error('Erro ao adicionar o produto', error);
+      throw error;
+    }
   }
 }

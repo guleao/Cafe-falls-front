@@ -11,6 +11,7 @@
         <th scope="col">Descricao:</th>
         <th scope="col">Preco compra:</th>
         <th scope="col">Preco venda:</th>
+        <th scope="col">Preferências:</th>
       </tr>
     </thead>
     <tbody>
@@ -41,10 +42,11 @@
             })
           }}
         </th>
+        <th>
+          <button class="btn btn-outline-danger">Editar</button>
+          <button class="btn btn-outline-dark ms-2">Excluir</button>
+        </th>
       </tr>
-      <div>
-        <button class="btn btn-outline-danger">Editar</button>
-      </div>
     </tbody>
   </table>
 
@@ -54,57 +56,119 @@
         <button class="btn btn-success" (click)="OpenModalNovo()">
           Adicionar produto
         </button>
-        <button class="btn btn-dark">Editar produto</button>
       </div>
     </div>
   </div>
 </div>
 
-<div class="modal" tabindex="-1" id="modalNovo">
+<div
+  class="modal animate__animated animate__fadeInUp"
+  tabindex="-1"
+  id="modalNovo"
+>
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title">Modal title</h5>
+        <h5 class="modal-title">Adicionar produto</h5>
       </div>
-      <div class="modal-body">
-        <p>Modal body text goes here.</p>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
-          Close
-        </button>
-        <button type="button" class="btn btn-danger">Adicionar produto</button>
+      <div class="modal-body d-flex flex-column">
+        <form (ngSubmit)="addProdutoList()">
+          <p class="d-flex justify-content-between">
+            Nome do produto:
+            <input
+              class="border inputOpc"
+              type="text"
+              name="nome"
+              id="nome"
+              placeholder="Nome do produto"
+              [(ngModel)]="novoProduto.Nome_produto"
+            />
+          </p>
+
+          <p class="d-flex justify-content-between">
+            Descrição:
+            <input
+              class="border inputOpc"
+              type="text"
+              name="descricao"
+              id="descricao"
+              placeholder="Descricao do produto"
+              [(ngModel)]="novoProduto.Descricao"
+            />
+          </p>
+
+          <p class="d-flex justify-content-between">
+            preço venda:
+            <input
+              class="border inputOpc"
+              type="number"
+              name="Preco_venda"
+              id="Preco_venda"
+              placeholder="Preço de venda"
+              [(ngModel)]="novoProduto.Preco_venda"
+            />
+          </p>
+
+          <p class="d-flex justify-content-between">
+            Preço compra:
+            <input
+              class="border inputOpc"
+              type="number"
+              name="Preco_compra"
+              id="Preco_compra"
+              placeholder="Preço de compra"
+              [(ngModel)]="novoProduto.Preco_compra"
+            />
+          </p>
+        </form>
+        <div class="modal-footer d-flex justify-content-around">
+          <button
+            type="button"
+            class="btn btn-secondary"
+            data-bs-dismiss="modal"
+            (click)="CloseModalNovo()"
+          >
+            Cancelar
+          </button>
+          <button
+            type="button"
+            class="btn btn-danger"
+            (click)="addProdutoList()"
+          >
+            Adicionar produto
+          </button>
+        </div>
       </div>
     </div>
   </div>
-</div>
 
-<div class="modal" tabindex="-1" id="modalExcluir">
-  <div class="modal-dialog d-flex justify-content-center">
-    <div class="modal-content excluir d-flex justify-content-center">
-      <div class="modal-header d-flex justify-content-center">
-        <h5 class="modal-title">Certeza que quer excluir?</h5>
-      </div>
-      <div class="modal-body d-flex justify-content-center">
-        Ao aceitar você excluirá o item permanentemente.
-      </div>
-      <div class="modal-footer d-flex justify-content-center">
-        <button
-          (click)="CloseModalExcluir()"
-          type="button"
-          class="btn btn-secondary"
-          data-bs-dismiss="modal"
-        >
-          Cancelar
-        </button>
-        <button
-          (click)="CloseModalExcluir()"
-          (click)="CloseModalEditar()"
-          type="button"
-          class="btn btn-danger"
-        >
-          Excluir Item
-        </button>
+  <div class="modal" tabindex="-1" id="modalExcluir">
+    <div class="modal-dialog d-flex justify-content-center">
+      <div class="modal-content excluir d-flex justify-content-center">
+        <div class="modal-header d-flex justify-content-center">
+          <h5 class="modal-title">Certeza que quer excluir?</h5>
+        </div>
+        <div class="modal-body d-flex justify-content-center">
+          Ao aceitar você excluirá o item permanentemente.
+        </div>
+        <div class="modal-footer d-flex justify-content-center">
+          <button
+            (click)="CloseModalExcluir()"
+            type="button"
+            class="btn btn-secondary"
+            data-bs-dismiss="modal"
+          >
+            Cancelar
+          </button>
+          <button
+            (click)="CloseModalExcluir()"
+            (click)="CloseModalEditar()"
+            type="button"
+            class="btn btn-danger"
+          >
+            Excluir Item
+          </button>
+        </div>
       </div>
     </div>
   </div>

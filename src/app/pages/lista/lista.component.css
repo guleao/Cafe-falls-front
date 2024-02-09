@@ -1,4 +1,14 @@
-* {
-    outline: auto;
-}
+.inputOpc {
+    
+    display: relative;
+    margin-top: 1px;
+    margin-left: 3px;
 
+    border-style: solid;
+    border-radius: 5px;
+
+    width: 230px;
+    height: 25px;
+
+    
+}
