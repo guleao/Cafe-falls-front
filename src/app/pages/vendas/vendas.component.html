@@ -15,30 +15,23 @@
         src="assets/img/logo.png"
         class="logo animate__animated animate__pulse"
       />
-      <div
-        class="d-flex justify-content-center animate__animated animate__bounceIn"
-      >
-        <button
-          class="btn btn-danger m-2"
-          routerLink="/abrirmesa"
-          routerLinkActive="active"
-        >
-          Abrir mesa
-        </button>
-        <button
-          class="btn btn-danger m-2"
-          routerLink="/fecharmesa"
-          routerLinkActive=""
-        >
-          Fechar mesa
-        </button>
-      </div>
     </div>
 
     <div class="col-12 col-md-8">
       <div class="row">
-        <div class="col-6 col-md-3" *ngFor="let mesa of mesas">
+        <div class="col-6 col-md-3" *ngFor="let mesa of mesas; let i = index">
           <div class="card shadow m-1 p-1 animate__animated animate__bounceIn">
+            <div class="d-flex justify-content-end">
+              <input
+                [id]="'toggle' + i"
+                class="toggle"
+                name="toggle"
+                type="checkbox"
+                [(ngModel)]="mesa.isChecked"
+              />
+              <label [for]="'toggle' + i"></label>
+            </div>
+
             <div class="card-body">
               <h5 class="card-title">{{ mesa.nome }}</h5>
               <p class="card-text">ID:{{ mesa.id }}</p>
@@ -46,6 +39,7 @@
                 class="btn btn-danger btn1"
                 routerLink="/pedido"
                 routerLinkActive="active"
+                [disabled]="!mesa.isChecked"
               >
                 Fazer Pedido
               </button>
