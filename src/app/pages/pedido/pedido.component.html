@@ -11,6 +11,7 @@
         <form class="form-inline d-flex col-lg-6">
           <input
             class="form-control animate__animated animate__bounceIn"
+            id="barraPesquisa"
             type="search"
             placeholder="Pesquisar produto"
             aria-label="Search"
@@ -27,114 +28,39 @@
       <div class="row mt-2 ms-1 d-flex justify-content-center">
         <div class="col-lg-5 m-2">
           <div class="row text-center scrolling-wrapper">
-            <div class="col-lg-3 col-md-4 col-6">
-              <a href="#" class="d-block mb-1 h-100">
-                <img
-                  class="img-fluid img-thumbnail"
-                  src="https://source.unsplash.com/pWkk7iiCoDM/400x300"
-                  alt=""
-                />
-              </a>
-            </div>
-            <div class="col-lg-3 col-md-4 col-6">
-              <a href="#" class="d-block mb-4 h-100">
-                <img
-                  class="img-fluid img-thumbnail"
-                  src="https://source.unsplash.com/aob0ukAYfuI/400x300"
-                  alt=""
-                />
-              </a>
-            </div>
-            <div class="col-lg-3 col-md-4 col-6">
-              <a href="#" class="d-block mb-4 h-100">
-                <img
-                  class="img-fluid img-thumbnail"
-                  src="https://source.unsplash.com/EUfxH-pze7s/400x300"
-                  alt=""
-                />
-              </a>
-            </div>
-            <div class="col-lg-3 col-md-4 col-6">
-              <a href="#" class="d-block mb-4 h-100">
-                <img
-                  class="img-fluid img-thumbnail"
-                  src="https://source.unsplash.com/M185_qYH8vg/400x300"
-                  alt=""
-                />
-              </a>
-            </div>
-            <div class="col-lg-3 col-md-4 col-6">
-              <a href="#" class="d-block mb-4 h-100">
-                <img
-                  class="img-fluid img-thumbnail"
-                  src="https://source.unsplash.com/sesveuG_rNo/400x300"
-                  alt=""
-                />
-              </a>
-            </div>
-            <div class="col-lg-3 col-md-4 col-6">
-              <a href="#" class="d-block mb-4 h-100">
-                <img
-                  class="img-fluid img-thumbnail"
-                  src="https://source.unsplash.com/AvhMzHwiE_0/400x300"
-                  alt=""
-                />
-              </a>
-            </div>
-            <div class="col-lg-3 col-md-4 col-6">
-              <a href="#" class="d-block mb-4 h-100">
-                <img
-                  class="img-fluid img-thumbnail"
-                  src="https://source.unsplash.com/2gYsZUmockw/400x300"
-                  alt=""
-                />
-              </a>
-            </div>
-            <div class="col-lg-3 col-md-4 col-6">
-              <a href="#" class="d-block mb-4 h-100">
-                <img
-                  class="img-fluid img-thumbnail"
-                  src="https://source.unsplash.com/EMSDtjVHdQ8/400x300"
-                  alt=""
-                />
-              </a>
-            </div>
-            <div class="col-lg-3 col-md-4 col-6">
-              <a href="#" class="d-block mb-4 h-100">
-                <img
-                  class="img-fluid img-thumbnail"
-                  src="https://source.unsplash.com/8mUEy0ABdNE/400x300"
-                  alt=""
-                />
-              </a>
-            </div>
-            <div class="col-lg-3 col-md-4 col-6">
-              <a href="#" class="d-block mb-4 h-100">
-                <img
-                  class="img-fluid img-thumbnail"
-                  src="https://source.unsplash.com/8mUEy0ABdNE/400x300"
-                  alt=""
-                />
-              </a>
-            </div>
-            <div class="col-lg-3 col-md-4 col-6">
-              <a href="#" class="d-block mb-4 h-100">
-                <img
-                  class="img-fluid img-thumbnail"
-                  src="https://source.unsplash.com/aJeH0KcFkuc/400x300"
-                  alt=""
-                />
-              </a>
-            </div>
-            <div class="col-lg-3 col-md-4 col-6">
-              <a href="#" class="d-block mb-4 h-100">
-                <img
-                  class="img-fluid img-thumbnail"
-                  src="https://source.unsplash.com/p2TQ-3Bh3Oo/400x300"
-                  alt=""
-                />
-              </a>
-            </div>
+            <table class="table border tb1">
+              <thead>
+                <tr>
+                  <th scope="col">ID</th>
+                  <th scope="col">Nome do produto:</th>
+                  <th scope="col">Preço:</th>
+                  <th scope="col">Opcão:</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let produto of lista" id="listaProdutos">
+                  <th>
+                    {{ produto.idProduto }}
+                    <!-- Substitua 'nome' pela propriedade que você deseja exibir -->
+                  </th>
+                  <th>
+                    {{ produto.Nome_produto }}
+                  </th>
+
+                  <th>
+                    {{
+                      produto.Preco_venda.toLocaleString("pt-BR", {
+                        style: "currency",
+                        currency: "BRL"
+                      })
+                    }}
+                  </th>
+                  <th>
+                    <button class="btn btn-success ms-2">Add</button>
+                  </th>
+                </tr>
+              </tbody>
+            </table>
           </div>
         </div>
 
