@@ -24,4 +24,19 @@ export class EntradaitemComponent {
   data = '';
   validade = '';
   preco_venda = '';
+
+  onSubmit(): void {
+    console.log({
+      nome: this.nome,
+      descricao: this.descricao,
+      fornecedor: this.fornecedor,
+      infoadicional: this.infoadicional,
+      codigo: this.codigo,
+      quantidade: this.quantidade,
+      preco_compra: this.preco_compra,
+      data: this.data,
+      validade: this.validade,
+      preco_venda: this.preco_venda,
+    });
+  }
 }
