@@ -1,5 +1,6 @@
 .container { 
-    max-width: 1400px;
+    max-width: 1600px;
+
 }
 
 .logo {
@@ -68,3 +69,11 @@
     left: calc(100% - 22px);
     box-shadow: 0 3px 5px rgb(240, 119, 119);
 }
+
+@media screen and (min-width: 1000px) {
+    .logo {
+        display: flex;
+        align-items: flex-start;
+        width: 350px;
+    }
+  }
