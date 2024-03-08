@@ -3,6 +3,8 @@ import { NavbarmesasComponent } from '../../layout/navbars/navbarmesas/navbarmes
 import { CommonModule } from '@angular/common';
 import { Produto } from '../../models/produto';
 import { ProdutoService } from '../../services/produto.service';
+import { Mesa } from '../../models/mesa';
+import { MesaService } from '../../services/mesa.service';
 
 @Component({
   selector: 'app-pedido',
@@ -13,30 +15,22 @@ import { ProdutoService } from '../../services/produto.service';
 })
 export class PedidoComponent {
   lista: Produto[] = [];
+  listaPedidos: Produto[] = [];
 
-  constructor(private produtoService: ProdutoService) {}
+  mesaAtual: Mesa | null = null;
+
+  constructor(
+    private produtoService: ProdutoService,
+    private mesaService: MesaService
+  ) {
+    this.mesaService.mesaAtual.subscribe((mesa) => (this.mesaAtual = mesa));
+  }
 
   async ngOnInit() {
     this.lista = await this.produtoService.getLista();
   }
 
-  filtrar(): void {
-    let ul: HTMLUListElement,
-      li: HTMLLIElement,
-      a: HTMLAnchorElement,
-      i: number,
-      input: HTMLInputElement,
-      filter: string,
-      txtValue: string,
-      count: number = 0;
-
-    // Pegando elementos
-    input = document.getElementById('barraPesquisa') as HTMLInputElement;
-    ul = document.getElementById('listaProdutos') as HTMLUListElement;
-
-    //Filtro
-    filter = input.value.toUpperCase();
-
-    //Pegar as opções da lista
+  adicionaroAoPedido(produto: Produto) {
+    this.listaPedidos.push(produto);
   }
 }

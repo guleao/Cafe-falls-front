@@ -19,7 +19,7 @@
 
     <div class="col-12 col-md-8">
       <div class="row">
-        <div class="col-6 col-md-3" *ngFor="let mesa of mesas; let i = index">
+        <div class="col-6 col-md-3" *ngFor="let mesas of mesas; let i = index">
           <div class="card shadow m-1 p-1 animate__animated animate__bounceIn">
             <div class="d-flex justify-content-end">
               <input
@@ -27,19 +27,19 @@
                 class="toggle"
                 name="toggle"
                 type="checkbox"
-                [(ngModel)]="mesa.isChecked"
+                [(ngModel)]="mesas.Status_mesa"
               />
               <label [for]="'toggle' + i"></label>
             </div>
 
             <div class="card-body">
-              <h5 class="card-title">{{ mesa.nome }}</h5>
-              <p class="card-text">ID:{{ mesa.id }}</p>
+              <h5 class="card-title">Mesa</h5>
+              <p class="card-text">ID:{{ mesas.idMesa }}</p>
               <button
                 class="btn btn-danger btn1"
                 routerLink="/pedido"
                 routerLinkActive="active"
-                [disabled]="!mesa.isChecked"
+                [disabled]="!mesas.Status_mesa"
               >
                 Fazer Pedido
               </button>

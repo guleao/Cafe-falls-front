@@ -4,8 +4,6 @@ import { MenuinicioComponent } from './pages/menuinicio/menuinicio.component';
 import { VendasComponent } from './pages/vendas/vendas.component';
 import { MenuestoqueComponent } from './pages/menuestoque/menuestoque.component';
 import { ListaComponent } from './pages/lista/lista.component';
-import { AbrirmesaComponent } from './pages/abrirmesa/abrirmesa.component';
-import { FecharmesaComponent } from './pages/fecharmesa/fecharmesa.component';
 import { EntradaitemComponent } from './pages/entradaitem/entradaitem.component';
 import { PedidoComponent } from './pages/pedido/pedido.component';
 import { FinanceiroComponent } from './pages/financeiro/financeiro.component';
@@ -32,14 +30,6 @@ export const routes: Routes = [
   {
     path: 'lista',
     component: ListaComponent,
-  },
-  {
-    path: 'abrirmesa',
-    component: AbrirmesaComponent,
-  },
-  {
-    path: 'fecharmesa',
-    component: FecharmesaComponent,
   },
   {
     path: 'entrada',

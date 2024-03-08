@@ -18,7 +18,7 @@ export class ProdutoService {
 
   async getLista(): Promise<Produto[]> {
     try {
-      const response = (await this.http.get('/produto')).data.data; // Response é do tipo any[]
+      const response = (await this.http.get('/produtos')).data.data; // Response é do tipo any[]
 
       const produtos: Produto[] = response.map((item: any) => {
         // Mapeie cada item da resposta para o tipo Produto

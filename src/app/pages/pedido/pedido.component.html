@@ -1,4 +1,5 @@
 <app-navbarmesas></app-navbarmesas>
+<p>Mesa Atual: {{ mesaAtual?.Numero_mesa }}</p>
 
 <div class="container-fluid">
   <div class="row mt-5 mb-5 text-center animate__animated animate__bounceIn">
@@ -31,7 +32,7 @@
             <table class="table border tb1">
               <thead>
                 <tr>
-                  <th scope="col">ID</th>
+                  <th scope="col">ID:</th>
                   <th scope="col">Nome do produto:</th>
                   <th scope="col">Preço:</th>
                   <th scope="col">Opcão:</th>
@@ -56,7 +57,12 @@
                     }}
                   </th>
                   <th>
-                    <button class="btn btn-success ms-2">Add</button>
+                    <button
+                      class="btn btn-success ms-2"
+                      (click)="adicionaroAoPedido(produto)"
+                    >
+                      Add
+                    </button>
                   </th>
                 </tr>
               </tbody>
@@ -68,24 +74,24 @@
           <table class="table border animate__animated animate__bounceIn">
             <thead>
               <tr>
-                <th scope="col">Id</th>
-                <th scope="col">Produto</th>
-                <th scope="col">Q</th>
-                <th scope="col">Valor</th>
+                <th scope="col">ID:</th>
+                <th scope="col">Produto:</th>
+                <th scope="col">Quantidade:</th>
+                <th scope="col">Valor:</th>
               </tr>
             </thead>
             <tbody>
-              <tr>
-                <th scope="row">1</th>
-                <td>Pao Caseiro</td>
-                <td>2</td>
-                <td>R$10,00</td>
-              </tr>
-              <tr>
-                <th scope="row">2</th>
-                <td>Vinho</td>
-                <td>1</td>
-                <td>R$10,00</td>
+              <tr *ngFor="let produto of listaPedidos">
+                <th scope="row">{{ produto.idProduto }}</th>
+                <td>{{ produto.Nome_produto }}</td>
+                <td>
+                  {{
+                    produto.Preco_venda.toLocaleString("pt-BR", {
+                      style: "currency",
+                      currency: "BRL"
+                    })
+                  }}
+                </td>
               </tr>
             </tbody>
           </table>
