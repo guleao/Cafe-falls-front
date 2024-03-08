@@ -88,3 +88,65 @@
   .table td:last-child {
     border-right: none; /* Remove a borda direita da última célula de cada linha */
   }
+
+  /* estilo.css */
+
+#modalNovo {
+  background-color: transparent; /* Altere para a cor de fundo desejada */
+  border-radius: 10px; /* Adicione bordas arredondadas */
+}
+
+#modalNovo .modal-header {
+  background-color: #dc3545; /* Altere para a cor de fundo desejada */
+  color: white; /* Altere para a cor do texto desejada */
+}
+
+#modalNovo .modal-body {
+  font-size: 18px; /* Altere para o tamanho de fonte desejado */
+}
+
+#modalNovo .modal-footer {
+  background-color: white; /* Altere para a cor de fundo desejada */
+  color: white; /* Altere para a cor do texto desejada */
+}
+
+#modalNovo .inputOpc {
+  margin-left: 10px; /* Adicione margem à esquerda para alinhar os inputs */
+}
+
+#modalNovo input {
+  border-radius: 0.50rem;
+}
+
+
+
+
+#modalEditar {
+  background-color: transparent; /* Altere para a cor de fundo desejada */
+  border-radius: 10px; /* Adicione bordas arredondadas */
+}
+
+#modalEditar .modal-header {
+  background-color: #dc3545; /* Altere para a cor de fundo desejada */
+  color: white; /* Altere para a cor do texto desejada */
+}
+
+#modalEditar .modal-body {
+  font-size: 18px; /* Altere para o tamanho de fonte desejado */
+}
+
+#modalEditar .modal-footer {
+  background-color: white; /* Altere para a cor de fundo desejada */
+  color: white; /* Altere para a cor do texto desejada */
+}
+
+#modalEditar .inputOpc {
+  margin-left: 10px; /* Adicione margem à esquerda para alinhar os inputs */
+}
+
+#modalEditar input {
+  border-radius: 0.50rem;
+  height: 30px;
+ 
+  justify-content: end;
+}

@@ -43,12 +43,41 @@ export class ProdutoService {
 
   async adicionarProduto(novoProduto: Produto): Promise<void> {
     try {
-      const response = await this.http.post('/produto', novoProduto);
+      const response = await this.http.post('/produtos', novoProduto);
       console.log('Produto adicionado', response);
       this.lista.push(novoProduto);
       this.listaAtualizada.next([...this.lista]);
     } catch (error) {
       console.error('Erro ao adicionar o produto', error);
+      throw error;
+    }
+  }
+
+  async editarProduto(produto: Produto): Promise<void> {
+    try {
+      const response = await this.http.put(
+        `/produtos/${produto.idProduto}`,
+        produto
+      );
+      console.log('Produto editado', response);
+      // Atualize a lista de produtos após a edição
+      this.lista = await this.getLista();
+      this.listaAtualizada.next([...this.lista]);
+    } catch (error) {
+      console.error('Erro ao editar o produto', error);
+      throw error;
+    }
+  }
+
+  async excluirProduto(id: number): Promise<void> {
+    try {
+      const response = await this.http.delete(`/produtos/${id}`);
+      console.log('Produto excluído', response);
+      // Atualize a lista de produtos após a exclusão
+      this.lista = await this.getLista();
+      this.listaAtualizada.next([...this.lista]);
+    } catch (error) {
+      console.error('Erro ao excluir o produto', error);
       throw error;
     }
   }

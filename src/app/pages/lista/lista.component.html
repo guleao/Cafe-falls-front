@@ -16,10 +16,9 @@
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let produto of lista">
+        <tr *ngFor="let produto of produtosPaginados">
           <th>
             {{ produto.idProduto }}
-            <!-- Substitua 'nome' pela propriedade que você deseja exibir -->
           </th>
           <th>
             {{ produto.Nome_produto }}
@@ -44,8 +43,18 @@
             }}
           </th>
           <th>
-            <button class="btn btn-outline-danger">Editar</button>
-            <button class="btn btn-outline-dark ms-2">Excluir</button>
+            <button
+              class="btn btn-outline-danger"
+              (click)="OpenModalEditar(produto)"
+            >
+              Editar
+            </button>
+            <button
+              class="btn btn-outline-dark ms-2"
+              (click)="excluirProduto(produto.idProduto)"
+            >
+              Excluir
+            </button>
           </th>
         </tr>
       </tbody>
@@ -136,6 +145,8 @@
             type="button"
             class="btn btn-danger"
             (click)="addProdutoList()"
+            (click)="CloseModalNovo()"
+            (click)="adicionarProduto(novoProduto)"
           >
             Adicionar produto
           </button>
@@ -171,6 +182,71 @@
             Excluir Item
           </button>
         </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal" tabindex="-1" id="modalEditar">
+  <div class="modal-dialog d-flex justify-content-center">
+    <div class="modal-content excluir d-flex justify-content-center">
+      <div class="modal-header d-flex justify-content-center">
+        <h5 class="modal-title">Edição de produto</h5>
+      </div>
+      <div class="modal-body d-flex justify-content-center flex-column">
+        <p class="d-flex justify-content-between">
+          Editar nome:
+          <input
+            class="inputOpc border"
+            [(ngModel)]="produtoParaEditar.Nome_produto"
+            type="text"
+          />
+        </p>
+        <p class="d-flex justify-content-between">
+          Editar descrição:
+          <input
+            class="inputOpc border"
+            [(ngModel)]="produtoParaEditar.Descricao"
+            type="text"
+          />
+        </p>
+        <p class="d-flex justify-content-between">
+          Editar preço de compra:
+          <input
+            class="inputOpc border"
+            [(ngModel)]="produtoParaEditar.Preco_compra"
+            type="text"
+            placeholder="Nome do produto"
+          />
+        </p>
+        <p class="d-flex justify-content-between">
+          Editar preço de venda:
+          <input
+            class="inputOpc border"
+            [(ngModel)]="produtoParaEditar.Preco_venda"
+            type="text"
+            placeholder="Nome do produto"
+          />
+        </p>
+      </div>
+
+      <div class="modal-footer d-flex justify-content-center">
+        <button
+          (click)="CloseModalExcluir()"
+          type="button"
+          class="btn btn-secondary"
+          data-bs-dismiss="modal"
+        >
+          Cancelar
+        </button>
+        <button
+          (click)="editarProduto()"
+          (click)="CloseModalEditar()"
+          type="button"
+          class="btn btn-danger"
+        >
+          Editar Item
+        </button>
       </div>
     </div>
   </div>
