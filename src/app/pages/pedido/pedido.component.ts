@@ -5,6 +5,7 @@ import { Produto } from '../../models/produto';
 import { ProdutoService } from '../../services/produto.service';
 import { Mesa } from '../../models/mesa';
 import { MesaService } from '../../services/mesa.service';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-pedido',
@@ -21,9 +22,13 @@ export class PedidoComponent {
 
   constructor(
     private produtoService: ProdutoService,
-    private mesaService: MesaService
+    private mesaService: MesaService,
+    private route: ActivatedRoute
   ) {
-    this.mesaService.mesaAtual.subscribe((mesa) => (this.mesaAtual = mesa));
+    this.mesaService.mesaAtual.subscribe((mesa) => {
+      this.mesaAtual = mesa;
+      console.log('Mesa atual:', this.mesaAtual);
+    });
   }
 
   async ngOnInit() {

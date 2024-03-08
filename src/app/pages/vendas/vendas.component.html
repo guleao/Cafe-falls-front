@@ -39,6 +39,7 @@
                 class="btn btn-danger btn1"
                 routerLink="/pedido"
                 routerLinkActive="active"
+                (click)="fazerPedido(mesas)"
                 [disabled]="!mesas.Status_mesa"
               >
                 Fazer Pedido

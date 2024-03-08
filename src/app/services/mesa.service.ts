@@ -10,8 +10,6 @@ export class MesaService {
   private mesaSource = new BehaviorSubject<Mesa | null>(null);
   mesaAtual = this.mesaSource.asObservable();
 
-  constructor(private mesaService: MesaService) {}
-
   private http = axios.create({
     baseURL: 'http://127.0.0.1:8000/api',
   });

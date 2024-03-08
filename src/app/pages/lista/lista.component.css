@@ -1,13 +1,90 @@
-.inputOpc {
+.table-wrapper {
+    max-height: 540px;
+    overflow-y: auto;
+    margin: 20px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+    border-radius: 0.75rem;
+  }
+  
+  .table {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: #f9f9f9;
+  }
+  
+  .table thead tr {
+    background-color: #f8f8f8;
+    color: #000000;
+  }
+  
+  .table th,
+  .table td {
+    padding: 0.70rem;
+    text-align: left;
+    border-bottom: 1px solid #dee2e6;
+  }
+  
+  .table thead {
+    position: sticky;
+    top: 0;
+    z-index: 1020;
+    background-color: #ffffff; /* Adiciona cor de fundo ao cabeçalho fixo */
+  }
+  
+  .table tbody tr:hover {
+    background-color: #dddddd;
+  }
+  
+  .btn-outline-danger {
+    border-color: #dc3545;
+    color: #dc3545;
+  }
+  
+  .btn-outline-danger:hover {
+    background-color: #dc3545;
+    color: #fff;
     
-    display: relative;
-    margin-top: 1px;
-    margin-left: 3px;
+  }
+  
+  .btn-outline-dark {
+    border-color: #343a40;
+    color: #343a40;
+  }
+  
+  .btn-outline-dark:hover {
+    background-color: #343a40;
+    color: #fff;
+  }
 
-    border-style: solid;
-    border-radius: 5px;
-
-    width: 230px;
-    height: 25px;
-
-}
+  /* Estilização geral da barra de rolagem */
+::-webkit-scrollbar {
+    width: 12px; /* Largura da barra de rolagem */
+  }
+  
+  /* Handle da barra de rolagem */
+  ::-webkit-scrollbar-thumb {
+    background: #979797; /* Cor do handle da barra de rolagem */
+    border-radius: 10px; /* Arredondamento do handle da barra de rolagem */
+  }
+  
+  /* Handle da barra de rolagem ao passar o mouse */
+  ::-webkit-scrollbar-thumb:hover {
+    background: #942b10;
+  }
+  
+  /* Estilização da tabela */
+  .table {
+    width: 100%;
+    border-collapse: separate; /* Isso impede que as linhas se estendam além da tabela */
+    border-spacing: 0; /* Remove o espaçamento padrão entre as células */
+  }
+  
+  .table th,
+  .table td {
+    border-right: 1px solid #dee2e6; /* Adiciona borda direita para cada célula */
+  }
+  
+  .table th:last-child,
+  .table td:last-child {
+    border-right: none; /* Remove a borda direita da última célula de cada linha */
+  }
