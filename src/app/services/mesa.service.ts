@@ -3,18 +3,24 @@ import axios from 'axios';
 import { Mesa } from '../models/mesa';
 import { BehaviorSubject } from 'rxjs';
 
+// Injectable marca a classe como um serviço que pode ser injetado em outras partes da aplicação.
 @Injectable({
   providedIn: 'root',
 })
 export class MesaService {
+
   private mesaSource = new BehaviorSubject<Mesa | null>(null);
+  // Estamos criando uma nova instância de BehaviorSubject para armazenar e emitir os valores da mesa atual.
+  
   mesaAtual = this.mesaSource.asObservable();
 
+
+  // CONFIGURAÇÃO DO AXIOS:
   private http = axios.create({
     baseURL: 'http://127.0.0.1:8000/api',
   });
 
-  // Método para obter todas as mesas
+  // Método getMesas que vai ser utilizado para pegar os dados das mesas.
   async getMesas(): Promise<Mesa[]> {
     try {
       const response = (await this.http.get('/mesas')).data.data;

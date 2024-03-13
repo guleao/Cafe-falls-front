@@ -7,18 +7,26 @@ import axios from 'axios';
   providedIn: 'root',
 })
 export class ProdutoService {
+
+  // Declarando um array lista do produto.
   private lista: Produto[] = [];
+
+  // Estamos criando uma instância de behaviorsubject que vai armazenar e emitir os valores da lista atualizada.
   private listaAtualizada = new BehaviorSubject<Produto[]>([]);
 
-  constructor() {}
-
+  // Configuração do axios para requisições HTTP.
   private http = axios.create({
     baseURL: 'http://127.0.0.1:8000/api',
   });
 
+  // Método GET - Promise que resolve um array de produto
+  // Tipo de retorno: A função espera que os dados recebidos pelo servidor sejam do tipo Produto[]
+  // Promise<Produto[]> = Esta função retornará uma promessa que quando resolvida fonrecerá uma matriz de produtos.
   async getLista(): Promise<Produto[]> {
     try {
-      const response = (await this.http.get('/produtos')).data.data; // Response é do tipo any[]
+
+      // Solicitação get no caminho /produtos do back-end. 
+      const response = (await this.http.get('/produtos')).data.data; 
 
       const produtos: Produto[] = response.map((item: any) => {
         // Mapeie cada item da resposta para o tipo Produto

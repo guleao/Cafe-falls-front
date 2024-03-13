@@ -130,7 +130,7 @@ export class ListaComponent implements OnInit {
     }
   }
 
-  OpenModalExcluir() {
+  OpenModalExcluir(produto: Produto) {
     const modelDiv = document.getElementById('modalExcluir');
     if (modelDiv != null) {
       modelDiv.style.display = 'block';
