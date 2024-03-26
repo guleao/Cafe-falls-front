@@ -8,11 +8,12 @@ import { MesaService } from '../../services/mesa.service';
 import { ActivatedRoute } from '@angular/router';
 import { Categorias } from '../../models/categorias';
 import { CategoriaService } from '../../services/categorias.service';
+import { FormsModule, NgModel } from '@angular/forms';
 
 @Component({
   selector: 'app-pedido',
   standalone: true,
-  imports: [NavbarmesasComponent, CommonModule],
+  imports: [NavbarmesasComponent, CommonModule, FormsModule],
   templateUrl: './pedido.component.html',
   styleUrl: './pedido.component.css',
 })
@@ -22,6 +23,8 @@ export class PedidoComponent implements OnInit {
   categorias: Categorias[] = [];
   mesaAtual: Mesa | null = null;
   visualizandoProdutos = false;
+  pesquisa: string = '';
+  listaProdutosFiltrados: Produto[] = [];
 
   constructor(
     private produtoService: ProdutoService,
@@ -41,7 +44,7 @@ export class PedidoComponent implements OnInit {
   }
 
   selecionarCategoria(categoria: Categorias) {
-    this.listaProdutos = this.lista.filter(
+    this.listaProdutosFiltrados = this.lista.filter(
       (produto) => produto.idCategoria === categoria.idCategoria
     );
     this.visualizandoProdutos = true;
@@ -49,6 +52,18 @@ export class PedidoComponent implements OnInit {
 
   voltarParaCategorias() {
     this.visualizandoProdutos = false;
+  }
+
+  filtrarProdutos() {
+    if (this.pesquisa === '') {
+      this.visualizandoProdutos = false;
+      return;
+    }
+
+    this.visualizandoProdutos = true;
+    this.listaProdutosFiltrados = this.lista.filter((produto) =>
+      produto.Nome_produto.toLowerCase().includes(this.pesquisa.toLowerCase())
+    );
   }
 
   adicionaroAoPedido(produto: Produto) {

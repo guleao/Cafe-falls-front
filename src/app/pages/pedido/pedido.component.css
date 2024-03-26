@@ -1,9 +1,6 @@
-* {
-  outline: auto;
-}
 
 .scrolling-wrapper {
-    max-height: 700px;
+    max-height: 600px;
     overflow-x: hidden;
     overflow-y: scroll;
     white-space: nowrap;
@@ -20,6 +17,7 @@
   width: 125px;
   height: 125px;
   border: 1px;
+  border-radius: 3px;
   box-shadow: 1px 1px 5px 0px rgb(73, 73, 73);
 }
 
@@ -33,4 +31,12 @@
 
  width: 150px;
  height: 150px;
+ border: 1px;
+  border-radius: 3px;
+  box-shadow: 1px 1px 5px 0px rgb(73, 73, 73);
+}
+
+.botaovolta {
+  max-width: 100px;
+  height: 600px;
 }
