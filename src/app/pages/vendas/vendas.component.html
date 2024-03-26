@@ -4,7 +4,7 @@
   <div class="row justify-content-center">
     <div class="col-12 text-center">
       <h1 class="p-2 display-5 animate__animated animate__bounceIn">
-        Selecione a mesa para realizar o pedido
+        Realize o pedido no balcão
       </h1>
     </div>
   </div>
@@ -19,31 +19,29 @@
 
     <div class="col-12 col-md-8">
       <div class="row">
-        <div class="col-6 col-md-3" *ngFor="let mesas of mesas; let i = index">
+        <div class="col-6 col-md-3">
           <div class="card shadow m-1 p-1 animate__animated animate__bounceIn">
-            <div class="d-flex justify-content-end">
-              <input
-                [id]="'toggle' + i"
-                class="toggle"
-                name="toggle"
-                type="checkbox"
-                [(ngModel)]="mesas.Status_mesa"
-              />
-              <label [for]="'toggle' + i"></label>
-            </div>
-
             <div class="card-body">
-              <h5 class="card-title">Mesa</h5>
-              <p class="card-text">ID:{{ mesas.idMesa }}</p>
+              <h5 class="card-title">Balcão</h5>
               <button
                 class="btn btn-danger btn1"
                 routerLink="/pedido"
                 routerLinkActive="active"
-                (click)="fazerPedido(mesas)"
-                [disabled]="!mesas.Status_mesa"
+                (click)="fazerPedidoNoBalcao()"
               >
                 Fazer Pedido
               </button>
+            </div>
+          </div>
+        </div>
+        <div
+          class="col-6 col-md-3"
+          *ngFor="let pedido of pedidosAtivos; let i = index"
+        >
+          <div class="card shadow m-1 p-1 animate__animated animate__bounceIn">
+            <div class="card-body">
+              <h5 class="card-title">Pedido Ativo</h5>
+              <p class="card-text">ID:{{ pedido.idPedido }}</p>
             </div>
           </div>
         </div>
