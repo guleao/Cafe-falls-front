@@ -21,7 +21,7 @@ import { FormsModule } from '@angular/forms';
 })
 export class ListaComponent implements OnInit {
   lista: Produto[] = [];
-  novoProduto: Produto = new Produto(0, '', '', 0, 0);
+  novoProduto: Produto = new Produto(0, '', 0, 0, 0, '', '', 0);
   produtoParaEditar: Produto;
 
   produtosPorPagina = 30;
@@ -55,7 +55,7 @@ export class ListaComponent implements OnInit {
   }
 
   constructor(private produtoService: ProdutoService) {
-    this.produtoParaEditar = new Produto(0, '', '', 0, 0);
+    this.produtoParaEditar = new Produto(0, '', 0, 0, 0, '', '', 0);
   }
 
   async addProdutoList() {

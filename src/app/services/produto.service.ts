@@ -7,7 +7,6 @@ import axios from 'axios';
   providedIn: 'root',
 })
 export class ProdutoService {
-
   // Declarando um array lista do produto.
   private lista: Produto[] = [];
 
@@ -19,14 +18,10 @@ export class ProdutoService {
     baseURL: 'http://127.0.0.1:8000/api',
   });
 
-  // Método GET - Promise que resolve um array de produto
-  // Tipo de retorno: A função espera que os dados recebidos pelo servidor sejam do tipo Produto[]
-  // Promise<Produto[]> = Esta função retornará uma promessa que quando resolvida fonrecerá uma matriz de produtos.
   async getLista(): Promise<Produto[]> {
     try {
-
-      // Solicitação get no caminho /produtos do back-end. 
-      const response = (await this.http.get('/produtos')).data.data; 
+      // Solicitação get no caminho /produtos do back-end.
+      const response = (await this.http.get('/produtos')).data.data;
 
       const produtos: Produto[] = response.map((item: any) => {
         // Mapeie cada item da resposta para o tipo Produto
@@ -37,7 +32,9 @@ export class ProdutoService {
           Descricao: item.Descricao,
           Preco_venda: item.Preco_venda,
           Preco_compra: item.Preco_compra,
-          // Continue preenchendo os outros campos conforme necessário
+          Preco_lojista: 0,
+          Imagem: null,
+          idCategoria: 0,
         };
         return produto;
       });

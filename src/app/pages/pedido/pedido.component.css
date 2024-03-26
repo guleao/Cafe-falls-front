@@ -1,13 +1,36 @@
-
+* {
+  outline: auto;
+}
 
 .scrolling-wrapper {
-    max-height: 340px;
+    max-height: 700px;
     overflow-x: hidden;
     overflow-y: scroll;
     white-space: nowrap;
+    justify-content: center;
   }
   
   .scrolling-wrapper > div {
     display: inline-block;
   }
   
+
+.ajusteImg {
+  margin-top: 30px;
+  width: 125px;
+  height: 125px;
+  border: 1px;
+  box-shadow: 1px 1px 5px 0px rgb(73, 73, 73);
+}
+
+.overflow-wrap-break-word {
+ word-break: break-all;
+}
+
+.ajusteImgProd {
+  display: flex;
+  justify-content: center;
+
+ width: 150px;
+ height: 150px;
+}
