@@ -40,3 +40,14 @@
   max-width: 100px;
   height: 600px;
 }
+
+.precoFinal {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 30px;
+
+
+  font-weight: 600;
+  margin-top: 10px;
+}

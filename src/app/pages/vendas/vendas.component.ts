@@ -23,7 +23,7 @@ import { HttpClientModule } from '@angular/common/http';
   styleUrls: ['./vendas.component.css'],
 })
 export class VendasComponent implements OnInit {
-  pedidosAtivos: Pedido[] = [];
+  pedidosFinalizados: Pedido[] = [];
 
   constructor(private pedidoService: PedidoService, private router: Router) {}
 
@@ -31,12 +31,15 @@ export class VendasComponent implements OnInit {
     this.pedidoService
       .getLista()
       .then((pedidos: Pedido[]) => {
-        this.pedidosAtivos = pedidos;
+        this.pedidosFinalizados = pedidos;
       })
       .catch((error) => {
         // Trate o erro aqui, se necessário
         console.error('Erro ao obter lista de pedidos:', error);
       });
+    this.pedidoService.getPedidosFinalizados().then((pedidos) => {
+      this.pedidosFinalizados = pedidos;
+    });
   }
 
   fazerPedidoNoBalcao(): void {

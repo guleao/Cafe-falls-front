@@ -8,7 +8,10 @@ import { MesaService } from '../../services/mesa.service';
 import { ActivatedRoute } from '@angular/router';
 import { Categorias } from '../../models/categorias';
 import { CategoriaService } from '../../services/categorias.service';
-import { FormsModule, NgModel } from '@angular/forms';
+import { FormsModule } from '@angular/forms';
+import { ItemPedido } from '../../models/itempedido';
+import { Pedido } from '../../models/pedido';
+import { PedidoService } from '../../services/pedido.service';
 
 @Component({
   selector: 'app-pedido',
@@ -25,17 +28,28 @@ export class PedidoComponent implements OnInit {
   visualizandoProdutos = false;
   pesquisa: string = '';
   listaProdutosFiltrados: Produto[] = [];
+  listaProdutosPedido: Produto[] = [];
+  itensPedido: ItemPedido[] = [];
+  pedido: Pedido = new Pedido(0, 0, '', 0, '');
+  pedidosFinalizados: Pedido[] = [];
 
   constructor(
     private produtoService: ProdutoService,
     private mesaService: MesaService,
     private categoriaService: CategoriaService,
+    private pedidoService: PedidoService,
     private route: ActivatedRoute
   ) {
     this.mesaService.mesaAtual.subscribe((mesa) => {
       this.mesaAtual = mesa;
       console.log('Mesa atual:', this.mesaAtual);
     });
+    this.pedido.formasdePagamento = [
+      'Dinheiro',
+      'Cartão de Crédito',
+      'Cartão de Débito',
+      'Pix',
+    ];
   }
 
   async ngOnInit() {
@@ -67,6 +81,64 @@ export class PedidoComponent implements OnInit {
   }
 
   adicionaroAoPedido(produto: Produto) {
-    // Implemente a lógica para adicionar o produto ao pedido
+    const itemExistente = this.itensPedido.find(
+      (item) => item.produto.idProduto === produto.idProduto
+    );
+    if (itemExistente) {
+      itemExistente.quantidade++;
+    } else {
+      this.itensPedido.push(new ItemPedido(produto));
+    }
+    this.pedido.Valor_total += produto.Preco_venda;
+  }
+
+  removerItem(index: number) {
+    if (this.itensPedido[index].quantidade > 1) {
+      this.itensPedido[index].quantidade -= 1;
+      this.pedido.Valor_total -= this.itensPedido[index].produto.Preco_venda;
+    } else {
+      this.pedido.Valor_total -= this.itensPedido[index].produto.Preco_venda;
+      this.itensPedido.splice(index, 1);
+    }
+  }
+
+  limparPedido() {
+    this.itensPedido = [];
+    this.pedido.Valor_total = 0;
+  }
+
+  CloseModalPagamento() {
+    const modelDiv = document.getElementById('modalPagamento');
+    if (modelDiv != null) {
+      modelDiv.style.display = 'none';
+    }
+  }
+
+  OpenModalPagamento() {
+    const modelDiv = document.getElementById('modalPagamento');
+    if (modelDiv != null) {
+      modelDiv.style.display = 'block';
+    }
+  }
+
+  async finalizarPedido(): Promise<void> {
+    if (!this.pedido) {
+      alert('Pedido inválido');
+      return;
+    }
+    try {
+      // Se o idPedido for 0, gere um novo ID
+      if (this.pedido.idPedido === 0) {
+        this.pedido.idPedido = await this.pedidoService.getNextId();
+      }
+      await this.pedidoService.finalizarPedido(this.pedido.idPedido);
+      alert('Pedido finalizado com sucesso!');
+      // Atualize a lista de pedidos finalizados
+      this.pedidosFinalizados =
+        await this.pedidoService.getPedidosFinalizados();
+    } catch (error) {
+      console.error('Erro ao finalizar o pedido', error);
+      alert('Erro ao finalizar o pedido');
+    }
   }
 }

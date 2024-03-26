@@ -86,4 +86,16 @@ export class ProdutoService {
       throw error;
     }
   }
+
+  async finalizarPedido(id: number): Promise<void> {
+    try {
+      const response = await this.http.put(`/pedidos/finalizar/${id}`);
+      console.log('Pedido finalizado', response);
+      this.lista = await this.getLista();
+      this.listaAtualizada.next([...this.lista]);
+    } catch (error) {
+      console.error('Erro ao finalizar o pedido', error);
+      throw error;
+    }
+  }
 }

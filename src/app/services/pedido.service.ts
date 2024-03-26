@@ -75,4 +75,48 @@ export class PedidoService {
       throw error;
     }
   }
+  async finalizarPedido(idPedido: number): Promise<void> {
+    if (idPedido === 0) {
+      throw new Error('ID do pedido inválido');
+    }
+    try {
+      const response = await this.http.put(`/pedidos/${idPedido}`);
+      console.log('Pedido finalizado', response);
+      this.lista = await this.getLista();
+      this.listaAtualizada.next([...this.lista]);
+    } catch (error) {
+      console.error('Erro ao finalizar o pedido', error);
+      throw error;
+    }
+  }
+
+  async getPedidosFinalizados(): Promise<Pedido[]> {
+    try {
+      const response = (await this.http.get('/pedidos')).data.data;
+
+      const pedidos: Pedido[] = response.map((item: any) => {
+        const pedido: Pedido = {
+          idPedido: item.idPedido,
+          idMesa: item.idMesa,
+          Data: item.Data,
+          Valor_total: item.Valor_total,
+          Forma_pagamento: item.Forma_pagamento,
+          Obs: item.Obs,
+          formasdePagamento: [],
+        };
+        return pedido;
+      });
+
+      return pedidos;
+    } catch (error) {
+      console.error('Erro ao obter a lista de pedidos finalizados:', error);
+      throw error;
+    }
+  }
+
+  async getNextId(): Promise<number> {
+    const pedidos = await this.getLista();
+    const maxId = Math.max(...pedidos.map((p) => p.idPedido), 0);
+    return maxId + 1;
+  }
 }

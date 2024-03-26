@@ -34,14 +34,20 @@
             </div>
           </div>
         </div>
-        <div
-          class="col-6 col-md-3"
-          *ngFor="let pedido of pedidosAtivos; let i = index"
-        >
-          <div class="card shadow m-1 p-1 animate__animated animate__bounceIn">
+        <div class="col-12">
+          <h5 class="card-title">Pedidos Finalizados</h5>
+          <div
+            class="card shadow m-1 p-1 animate__animated animate__bounceIn"
+            *ngFor="let pedido of pedidosFinalizados; let i = index"
+          >
             <div class="card-body">
-              <h5 class="card-title">Pedido Ativo</h5>
-              <p class="card-text">ID:{{ pedido.idPedido }}</p>
+              <p class="card-text">ID: {{ pedido.idPedido }}</p>
+              <p class="card-text">Data: {{ pedido.Data }}</p>
+              <p class="card-text">Valor Total: {{ pedido.Valor_total }}</p>
+              <p class="card-text">
+                Forma de Pagamento:
+                {{ pedido.formasdePagamento[pedido.Forma_pagamento] }}
+              </p>
             </div>
           </div>
         </div>
