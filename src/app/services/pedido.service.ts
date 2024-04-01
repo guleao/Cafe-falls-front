@@ -66,7 +66,7 @@ export class PedidoService {
 
   async excluirPedido(id: number): Promise<void> {
     try {
-      const response = await this.http.delete(`/pedidos/${id}`);
+      const response = await this.http.delete(`/pedido/${id}`);
       console.log('Pedido excluído', response);
       this.lista = await this.getLista();
       this.listaAtualizada.next([...this.lista]);
@@ -80,7 +80,7 @@ export class PedidoService {
       throw new Error('ID do pedido inválido');
     }
     try {
-      const response = await this.http.put(`/pedidos/${idPedido}`);
+      const response = await this.http.put(`/pedido/${idPedido}`);
       console.log('Pedido finalizado', response);
       this.lista = await this.getLista();
       this.listaAtualizada.next([...this.lista]);
@@ -92,7 +92,7 @@ export class PedidoService {
 
   async getPedidosFinalizados(): Promise<Pedido[]> {
     try {
-      const response = (await this.http.get('/pedidos')).data.data;
+      const response = (await this.http.get('/pedido')).data.data;
 
       const pedidos: Pedido[] = response.map((item: any) => {
         const pedido: Pedido = {

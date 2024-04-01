@@ -120,7 +120,6 @@
 
 
 
-
 #modalEditar {
   background-color: transparent; /* Altere para a cor de fundo desejada */
   border-radius: 10px; /* Adicione bordas arredondadas */
@@ -149,4 +148,13 @@
   height: 30px;
  
   justify-content: end;
+}
+
+#modalNovo option:hover {
+  background-color: rgb(173, 66, 66);
+  color: white;
+}
+
+.custom-button:hover {
+  color: white !important;
 }

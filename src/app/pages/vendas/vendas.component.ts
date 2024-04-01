@@ -7,6 +7,7 @@ import { FormsModule } from '@angular/forms';
 import { Pedido } from '../../models/pedido';
 import { Router } from '@angular/router';
 import { HttpClientModule } from '@angular/common/http';
+import { Produto } from '../../models/produto';
 
 @Component({
   selector: 'app-vendas',

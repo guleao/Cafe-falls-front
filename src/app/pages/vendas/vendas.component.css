@@ -1,11 +1,9 @@
-.container { 
-    max-width: 1600px;
 
-}
+
 
 .logo {
     
-    width: 300px;
+    width: 500px;
 }
 
 .centralizacao {
@@ -70,10 +68,26 @@
     box-shadow: 0 3px 5px rgb(240, 119, 119);
 }
 
-@media screen and (min-width: 1000px) {
+@media screen and (max-width: 1000px) {
+    .logo {
+        display: flex;
+        align-items: flex-start;
+        width: 550px;
+    }
+  }
+
+  
+@media screen and (max-width: 768px) {
     .logo {
         display: flex;
         align-items: flex-start;
         width: 350px;
     }
   }
+
+  
+
+.img {
+
+    width: 260px;
+}

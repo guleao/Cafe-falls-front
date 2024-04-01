@@ -4,7 +4,6 @@ import { CommonModule } from '@angular/common';
 import { Produto } from '../../models/produto';
 import { ProdutoService } from '../../services/produto.service';
 import { Mesa } from '../../models/mesa';
-import { MesaService } from '../../services/mesa.service';
 import { ActivatedRoute } from '@angular/router';
 import { Categorias } from '../../models/categorias';
 import { CategoriaService } from '../../services/categorias.service';
@@ -35,15 +34,10 @@ export class PedidoComponent implements OnInit {
 
   constructor(
     private produtoService: ProdutoService,
-    private mesaService: MesaService,
     private categoriaService: CategoriaService,
     private pedidoService: PedidoService,
     private route: ActivatedRoute
   ) {
-    this.mesaService.mesaAtual.subscribe((mesa) => {
-      this.mesaAtual = mesa;
-      console.log('Mesa atual:', this.mesaAtual);
-    });
     this.pedido.formasdePagamento = [
       'Dinheiro',
       'Cartão de Crédito',

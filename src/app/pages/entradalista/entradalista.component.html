@@ -1,0 +1,64 @@
+<app-navbarlista></app-navbarlista>
+
+<div class="container-fluid">
+  <h1 class="d-flex justify-content-center mt-5 mb-5">
+    Lista de Entrada de Produtos
+  </h1>
+
+  <div class="form-group">
+    <input
+      type="text"
+      class="form-control"
+      placeholder="Pesquisar entrada de produto"
+      [(ngModel)]="termoDePesquisa"
+    />
+  </div>
+
+  <div class="table-wrapper">
+    <table class="table">
+      <thead>
+        <tr>
+          <th scope="col">ID</th>
+          <th scope="col">ID do Produto</th>
+          <th scope="col">Quantidade</th>
+          <th scope="col">Preço</th>
+          <th scope="col">Data</th>
+          <th scope="col">Validade</th>
+          <th scope="col">Informações Adicionais</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let entradaProduto of listaFiltrada">
+          <td>{{ entradaProduto.idEntrada_Produto }}</td>
+          <td>{{ entradaProduto.idProduto }}</td>
+          <td>{{ entradaProduto.Quantidade }}</td>
+          <td>
+            {{
+              entradaProduto.Preco.toLocaleString("pt-BR", {
+                style: "currency",
+                currency: "BRL"
+              })
+            }}
+          </td>
+          <td>{{ entradaProduto.Data }}</td>
+          <td>{{ entradaProduto.Validade }}</td>
+          <td>{{ entradaProduto.Informacoes_adicionais }}</td>
+          <td>
+            <button class="btn btn-outline-danger">Editar</button>
+            <button class="btn btn-outline-dark ms-2">Excluir</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="row">
+    <div class="col-lg-12 col-">
+      <div class="d-flex justify-content-around">
+        <button class="btn btn-success mb-5 mt-5">
+          Adicionar Entrada de Produto
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

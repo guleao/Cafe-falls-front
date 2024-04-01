@@ -1,6 +1,6 @@
 import { HttpClientModule } from '@angular/common/http';
-import { Component, NgModule } from '@angular/core';
-import { FormsModule, NgModel, ReactiveFormsModule } from '@angular/forms';
+import { Component } from '@angular/core';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterOutlet } from '@angular/router';
 
 @Component({

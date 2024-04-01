@@ -1,7 +1,17 @@
 <app-navbarlista></app-navbarlista>
 
-<div class="container">
+<div class="container-fluid">
   <h1 class="d-flex justify-content-center mt-5 mb-5">Lista de Produtos</h1>
+
+  <div class="form-group">
+    <input
+      type="text"
+      class="form-control"
+      placeholder="Pesquisar produto"
+      [(ngModel)]="termoDePesquisa"
+      (input)="atualizarListaFiltrada()"
+    />
+  </div>
 
   <div class="table-wrapper">
     <table class="table">
@@ -9,40 +19,48 @@
         <tr>
           <th scope="col">ID</th>
           <th scope="col">Nome do produto:</th>
-          <th scope="col">Descricao:</th>
-          <th scope="col">Preco compra:</th>
-          <th scope="col">Preco venda:</th>
+          <th scope="col">Categoria:</th>
+          <th scope="col">Descrição:</th>
+          <th scope="col">Preço compra:</th>
+          <th scope="col">Preço venda:</th>
+          <th scope="col">Preço lojista:</th>
           <th scope="col">Preferências:</th>
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let produto of produtosPaginados">
-          <th>
-            {{ produto.idProduto }}
-          </th>
-          <th>
-            {{ produto.Nome_produto }}
-          </th>
-          <th>
-            {{ produto.Descricao }}
-          </th>
-          <th>
+        <tr *ngFor="let produto of listaFiltrada">
+          <td>{{ produto.idProduto }}</td>
+          <td>{{ produto.Nome_produto }}</td>
+          <td>
+            {{ categorias[produto.idCategoria] || "Categoria não encontrada" }}
+          </td>
+
+          <td>{{ produto.Descricao }}</td>
+          <td>
             {{
               produto.Preco_compra.toLocaleString("pt-BR", {
                 style: "currency",
                 currency: "BRL"
               })
             }}
-          </th>
-          <th>
+          </td>
+          <td>
             {{
               produto.Preco_venda.toLocaleString("pt-BR", {
                 style: "currency",
                 currency: "BRL"
               })
             }}
-          </th>
-          <th>
+          </td>
+          <td>
+            {{
+              produto.Preco_lojista.toLocaleString("pt-BR", {
+                style: "currency",
+                currency: "BRL"
+              })
+            }}
+          </td>
+          <td>
             <button
               class="btn btn-outline-danger"
               (click)="OpenModalEditar(produto)"
@@ -55,27 +73,10 @@
             >
               Excluir
             </button>
-          </th>
+          </td>
         </tr>
       </tbody>
     </table>
-    <div class="pagination">
-      <button
-        class="btn btn-outline-primary"
-        (click)="paginaAnterior()"
-        [disabled]="paginaAtual === 1"
-      >
-        Página anterior
-      </button>
-      <span>Página {{ paginaAtual }}</span>
-      <button
-        class="btn btn-outline-primary"
-        (click)="proximaPagina()"
-        [disabled]="paginaAtual * produtosPorPagina >= lista.length"
-      >
-        Próxima página
-      </button>
-    </div>
   </div>
 
   <div class="row">
@@ -87,86 +88,99 @@
       </div>
     </div>
   </div>
-</div>
 
-<div
-  class="modal animate__animated animate__fadeInUp"
-  tabindex="-1"
-  id="modalNovo"
->
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title">Adicionar produto</h5>
-      </div>
-      <div class="modal-body d-flex flex-column">
-        <form (ngSubmit)="addProdutoList()">
-          <p class="d-flex justify-content-between">
-            Nome do produto:
-            <input
-              class="border inputOpc"
-              type="text"
-              name="nome"
-              id="nome"
-              placeholder="Nome do produto"
-              [(ngModel)]="novoProduto.Nome_produto"
-            />
-          </p>
+  <div
+    class="modal animate__animated animate__fadeInUp"
+    tabindex="-1"
+    id="modalNovo"
+  >
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Adicionar produto</h5>
+        </div>
+        <div class="modal-body d-flex flex-column">
+          <form [formGroup]="form" (ngSubmit)="adicionarProduto()">
+            <p class="d-flex justify-content-between">
+              Nome do produto:
+              <input
+                class="border inputOpc"
+                type="text"
+                formControlName="Nome_produto"
+                id="nome"
+                placeholder="Nome do produto"
+              />
+            </p>
+            <p class="d-flex justify-content-between">
+              Descrição:
+              <input
+                class="border inputOpc"
+                type="text"
+                formControlName="Descricao"
+                id="descricao"
+                placeholder="Descrição do produto"
+              />
+            </p>
+            <p class="d-flex justify-content-between">
+              Preço venda:
+              <input
+                class="border inputOpc"
+                type="number"
+                formControlName="Preco_venda"
+                id="Preco_venda"
+                placeholder="Preço de venda"
+              />
+            </p>
+            <p class="d-flex justify-content-between">
+              Preço compra:
+              <input
+                class="border inputOpc"
+                type="number"
+                formControlName="Preco_compra"
+                id="Preco_compra"
+                placeholder="Preço de compra"
+              />
+            </p>
+            <p class="d-flex justify-content-between">
+              Preço lojista:
+              <input
+                class="border inputOpc"
+                type="number"
+                formControlName="Preco_lojista"
+                id="Preco_lojista"
+                placeholder="Preço de lojista"
+              />
+            </p>
+            <p class="d-flex justify-content-between">
+              Adicionar categoria:
+              <select formControlName="idCategoria" class="inputOpc border">
+                <option
+                  *ngFor="let idCategoria of idCategorias"
+                  [value]="idCategoria"
+                >
+                  {{ categorias[idCategoria] }}
+                </option>
+              </select>
+            </p>
+          </form>
 
-          <p class="d-flex justify-content-between">
-            Descrição:
-            <input
-              class="border inputOpc"
-              type="text"
-              name="descricao"
-              id="descricao"
-              placeholder="Descricao do produto"
-              [(ngModel)]="novoProduto.Descricao"
-            />
-          </p>
-
-          <p class="d-flex justify-content-between">
-            preço venda:
-            <input
-              class="border inputOpc"
-              type="number"
-              name="Preco_venda"
-              id="Preco_venda"
-              placeholder="Preço de venda"
-              [(ngModel)]="novoProduto.Preco_venda"
-            />
-          </p>
-
-          <p class="d-flex justify-content-between">
-            Preço compra:
-            <input
-              class="border inputOpc"
-              type="number"
-              name="Preco_compra"
-              id="Preco_compra"
-              placeholder="Preço de compra"
-              [(ngModel)]="novoProduto.Preco_compra"
-            />
-          </p>
-        </form>
-        <div class="modal-footer d-flex justify-content-around">
-          <button
-            type="button"
-            class="btn btn-secondary"
-            data-bs-dismiss="modal"
-            (click)="CloseModalNovo()"
-          >
-            Cancelar
-          </button>
-          <button
-            type="button"
-            class="btn btn-danger"
-            (click)="addProdutoList()"
-            (click)="CloseModalNovo()"
-            (click)="adicionarProduto(novoProduto)"
-          >
-            Adicionar produto
-          </button>
+          <div class="modal-footer d-flex justify-content-around">
+            <button
+              type="button"
+              class="btn btn-secondary"
+              data-bs-dismiss="modal"
+              (click)="CloseModalNovo()"
+            >
+              Cancelar
+            </button>
+            <button
+              type="button"
+              class="btn btn-danger"
+              (click)="CloseModalNovo(); adicionarProduto()"
+            >
+              Adicionar produto
+            </button>
+          </div>
         </div>
       </div>
     </div>
@@ -194,8 +208,8 @@
           >
             Cancelar
           </button>
-          <button>
-            (click)="CloseModalEditar()"
+          <button
+            (click)="excluirProduto(); CloseModalExcluir()"
             type="button"
             class="btn btn-danger"
           >
@@ -205,70 +219,90 @@
       </div>
     </div>
   </div>
-</div>
 
-<div class="modal" tabindex="-1" id="modalEditar">
-  <div
-    class="modal-dialog d-flex justify-content-center animate__animated animate__fadeInUp"
-  >
-    <div class="modal-content excluir d-flex justify-content-center">
-      <div class="modal-header d-flex justify-content-center">
-        <h5 class="modal-title">Edição de produto</h5>
-      </div>
-      <div class="modal-body d-flex justify-content-center flex-column">
-        <p class="d-flex justify-content-between">
-          Editar nome:
-          <input
-            class="inputOpc border"
-            [(ngModel)]="produtoParaEditar.Nome_produto"
-            type="text"
-          />
-        </p>
-        <p class="d-flex justify-content-between">
-          Editar descrição:
-          <input
-            class="inputOpc border"
-            [(ngModel)]="produtoParaEditar.Descricao"
-            type="text"
-          />
-        </p>
-        <p class="d-flex justify-content-between">
-          Editar preço de compra:
-          <input
-            class="inputOpc border"
-            [(ngModel)]="produtoParaEditar.Preco_compra"
-            type="text"
-            placeholder="Nome do produto"
-          />
-        </p>
-        <p class="d-flex justify-content-between">
-          Editar preço de venda:
-          <input
-            class="inputOpc border"
-            [(ngModel)]="produtoParaEditar.Preco_venda"
-            type="text"
-            placeholder="Nome do produto"
-          />
-        </p>
-      </div>
+  <div class="modal" tabindex="-1" id="modalEditar">
+    <div
+      class="modal-dialog d-flex justify-content-center animate__animated animate__fadeInUp"
+    >
+      <div class="modal-content excluir d-flex justify-content-center">
+        <div class="modal-header d-flex justify-content-center">
+          <h5 class="modal-title">Edição de produto</h5>
+        </div>
+        <div class="modal-body d-flex justify-content-center flex-column">
+          <p class="d-flex justify-content-between">
+            Editar nome:
+            <input
+              class="inputOpc border"
+              [(ngModel)]="produtoParaEditar.Nome_produto"
+              type="text"
+            />
+          </p>
+          <p class="d-flex justify-content-between">
+            Editar descrição:
+            <input
+              class="inputOpc border"
+              [(ngModel)]="produtoParaEditar.Descricao"
+              type="text"
+            />
+          </p>
+          <p class="d-flex justify-content-between">
+            Editar preço de compra:
+            <input
+              class="inputOpc border"
+              [(ngModel)]="produtoParaEditar.Preco_compra"
+              type="number"
+            />
+          </p>
+          <p class="d-flex justify-content-between">
+            Editar preço de venda:
+            <input
+              class="inputOpc border"
+              [(ngModel)]="produtoParaEditar.Preco_venda"
+              type="number"
+            />
+          </p>
+          <p class="d-flex justify-content-between">
+            Editar preço lojista:
+            <input
+              class="inputOpc border"
+              [(ngModel)]="produtoParaEditar.Preco_lojista"
+              type="number"
+            />
+          </p>
 
-      <div class="modal-footer d-flex justify-content-center">
-        <button
-          (click)="CloseModalEditar()"
-          type="button"
-          class="btn btn-secondary"
-          data-bs-dismiss="modal"
-        >
-          Cancelar
-        </button>
-        <button
-          (click)="editarProduto()"
-          (click)="CloseModalEditar()"
-          type="button"
-          class="btn btn-danger"
-        >
-          Editar Item
-        </button>
+          <p class="d-flex justify-content-between">
+            Editar categoria:
+            <select
+              [(ngModel)]="produtoParaEditar.idCategoria"
+              class="inputOpc border"
+            >
+              <option
+                *ngFor="let idCategoria of idCategorias"
+                [value]="idCategoria"
+              >
+                {{ categorias[idCategoria] }}
+              </option>
+            </select>
+          </p>
+        </div>
+
+        <div class="modal-footer d-flex justify-content-center">
+          <button
+            (click)="CloseModalEditar()"
+            type="button"
+            class="btn btn-secondary"
+            data-bs-dismiss="modal"
+          >
+            Cancelar
+          </button>
+          <button
+            (click)="editarProduto(); CloseModalEditar()"
+            type="button"
+            class="btn btn-danger"
+          >
+            Editar Item
+          </button>
+        </div>
       </div>
     </div>
   </div>
