@@ -1,13 +1,14 @@
 import { Component } from '@angular/core';
 import { FormControl, FormGroup, FormsModule } from '@angular/forms';
 import { NavbarlistaComponent } from '../../layout/navbars/navbarlista/navbarlista.component';
+import { RouterLink, RouterLinkActive } from '@angular/router';
 
 @Component({
   selector: 'app-entradalista',
   standalone: true,
   templateUrl: './entradalista.component.html',
   styleUrl: './entradalista.component.css',
-  imports: [NavbarlistaComponent, FormsModule],
+  imports: [NavbarlistaComponent, FormsModule, RouterLink, RouterLinkActive],
 })
 export class EntradalistaComponent {
   formulario = new FormGroup({

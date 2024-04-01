@@ -50,7 +50,6 @@ export class ListaComponent implements OnInit {
 
   idCategorias: number[] = [1, 2, 3, 4, 5, 6];
 
-  Object: any;
   form: FormGroup = new FormGroup({
     Nome_produto: new FormControl(null),
     Descricao: new FormControl(null),
@@ -63,14 +62,6 @@ export class ListaComponent implements OnInit {
   constructor(private produtoService: ProdutoService) {}
 
   ngOnInit() {
-    this.form = new FormGroup({
-      Nome_produto: new FormControl(null),
-      Descricao: new FormControl(null),
-      Preco_venda: new FormControl(null),
-      Preco_compra: new FormControl(null),
-      Preco_lojista: new FormControl(null),
-      idCategoria: new FormControl(null),
-    });
     this.obterListaProdutos();
   }
 
@@ -102,10 +93,21 @@ export class ListaComponent implements OnInit {
   }
   // Métodos relacionados à adição, edição e exclusão de produtos
 
-  adicionarProduto() {
-    this.produtoService.adicionarProduto(this.novoProduto).then(() => {
-      this.obterListaProdutos();
-    });
+  adicionarNovoProduto() {
+    if (this.form.valid) {
+      this.produtoService
+        .adicionarProduto(this.form.value)
+        .then(() => {
+          console.log('Produto adicionado com sucesso');
+          this.form.reset(); // Limpa o formulário após a submissão bem-sucedida
+          this.obterListaProdutos();
+        })
+        .catch((error) => {
+          console.error('Erro ao adicionar produto:', error);
+        });
+    } else {
+      console.error('Formulário inválido');
+    }
   }
 
   editarProduto() {

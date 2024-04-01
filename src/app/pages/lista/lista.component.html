@@ -100,7 +100,7 @@
           <h5 class="modal-title">Adicionar produto</h5>
         </div>
         <div class="modal-body d-flex flex-column">
-          <form [formGroup]="form" (ngSubmit)="adicionarProduto()">
+          <form [formGroup]="form">
             <p class="d-flex justify-content-between">
               Nome do produto:
               <input
@@ -176,7 +176,7 @@
             <button
               type="button"
               class="btn btn-danger"
-              (click)="CloseModalNovo(); adicionarProduto()"
+              (click)="CloseModalNovo(); adicionarNovoProduto()"
             >
               Adicionar produto
             </button>

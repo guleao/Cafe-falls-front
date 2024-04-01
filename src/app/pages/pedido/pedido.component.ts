@@ -3,7 +3,6 @@ import { NavbarmesasComponent } from '../../layout/navbars/navbarmesas/navbarmes
 import { CommonModule } from '@angular/common';
 import { Produto } from '../../models/produto';
 import { ProdutoService } from '../../services/produto.service';
-import { Mesa } from '../../models/mesa';
 import { ActivatedRoute } from '@angular/router';
 import { Categorias } from '../../models/categorias';
 import { CategoriaService } from '../../services/categorias.service';
@@ -23,7 +22,6 @@ export class PedidoComponent implements OnInit {
   lista: Produto[] = [];
   listaProdutos: Produto[] = [];
   categorias: Categorias[] = [];
-  mesaAtual: Mesa | null = null;
   visualizandoProdutos = false;
   pesquisa: string = '';
   listaProdutosFiltrados: Produto[] = [];
