@@ -3,13 +3,13 @@ import { NavbarmesasComponent } from '../../layout/navbars/navbarmesas/navbarmes
 import { CommonModule } from '@angular/common';
 import { Produto } from '../../models/produto';
 import { ProdutoService } from '../../services/produto.service';
-import { ActivatedRoute } from '@angular/router';
 import { Categorias } from '../../models/categorias';
 import { CategoriaService } from '../../services/categorias.service';
 import { FormsModule } from '@angular/forms';
 import { ItemPedido } from '../../models/itempedido';
 import { Pedido } from '../../models/pedido';
 import { PedidoService } from '../../services/pedido.service';
+import { PedidoPost } from '../../models/itempedido';
 
 @Component({
   selector: 'app-pedido',
@@ -27,22 +27,15 @@ export class PedidoComponent implements OnInit {
   listaProdutosFiltrados: Produto[] = [];
   listaProdutosPedido: Produto[] = [];
   itensPedido: ItemPedido[] = [];
-  pedido: Pedido = new Pedido(0, 0, '', 0, '');
+  pedido: Pedido = new Pedido(0, '', 0, '');
   pedidosFinalizados: Pedido[] = [];
+  dataAtual = new Date();
 
   constructor(
     private produtoService: ProdutoService,
     private categoriaService: CategoriaService,
-    private pedidoService: PedidoService,
-    private route: ActivatedRoute
-  ) {
-    this.pedido.formasdePagamento = [
-      'Dinheiro',
-      'Cartão de Crédito',
-      'Cartão de Débito',
-      'Pix',
-    ];
-  }
+    public pedidoService: PedidoService
+  ) {}
 
   async ngOnInit() {
     this.lista = await this.produtoService.getLista();
@@ -79,7 +72,7 @@ export class PedidoComponent implements OnInit {
     if (itemExistente) {
       itemExistente.quantidade++;
     } else {
-      this.itensPedido.push(new ItemPedido(produto));
+      this.itensPedido.push(new ItemPedido(produto, 1)); // Remova produto.idProduto
     }
     this.pedido.Valor_total += produto.Preco_venda;
   }
@@ -123,7 +116,31 @@ export class PedidoComponent implements OnInit {
       if (this.pedido.idPedido === 0) {
         this.pedido.idPedido = await this.pedidoService.getNextId();
       }
-      await this.pedidoService.finalizarPedido(this.pedido.idPedido);
+      this.pedido.Data = new Date()
+        .toISOString()
+        .slice(0, 19)
+        .replace('T', ' ');
+
+      // Crie um novo objeto pedido com apenas as propriedades que você deseja enviar
+      const pedidoPost: PedidoPost = {
+        pedido: {
+          idPedido: this.pedido.idPedido,
+          Data: this.pedido.Data,
+          Valor_total: this.pedido.Valor_total,
+          Forma_pagamento: this.pedido.Forma_pagamento,
+          Obs: this.pedido.Obs,
+          itens: this.pedido.itens, // Adicione esta linha
+        },
+        itens: this.itensPedido.map((item) => ({
+          Quantidade: item.quantidade,
+          Total_soma: item.quantidade * item.produto.Preco_venda,
+          idProduto: item.produto.idProduto,
+        })),
+      };
+
+      // Chame o método adicionarPedidoPost
+      await this.pedidoService.adicionarPedidoPost(pedidoPost);
+
       alert('Pedido finalizado com sucesso!');
       // Atualize a lista de pedidos finalizados
       this.pedidosFinalizados =

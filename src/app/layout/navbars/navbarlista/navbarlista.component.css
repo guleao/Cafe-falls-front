@@ -8,3 +8,24 @@
     background-color: #BD0914;
     padding-bottom: 2.5%;
 }
+
+.txtt {
+    color: white;
+}
+
+  
+@media screen and (min-width: 1600px) {
+    .navbar {
+        background-color: #BD0914;
+        padding-bottom: 2.5%;
+        width: 1876px;
+    }
+  }
+
+  @media screen and (max-width: 769px) {
+    .navbar {
+        background-color: #BD0914;
+        padding-bottom: 2.5%;
+        width: 780px;
+    }
+}

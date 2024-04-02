@@ -1,14 +1,65 @@
 
+.container-fluid {
+    max-width: 2000px;
+      height: 1200px;
+      background-image: url('/assets/img/bck.webp');
+      background-repeat: repeat;
+      background-size: 500px
+  }
+  
+
+table {
+    background-color: rgba(255, 255, 255, 1.0); /* Branco com 50% de transparência */
+    border-radius: 20px;
+    border-color: transparent;
+
+    box-shadow: 0px 0px 10px 5px rgba(190, 190, 190, 0.5); /* Sombra ao redor do elemento */
+    backdrop-filter: blur(5px); /* Desfoca o fundo atrás do elemento */
+  }
+  
+.pagination ::ng-deep .ngx-pagination {
+
+    bottom: 0;
+    width: 100%;
+    text-align: center;
+    background-color: transparent;
+}
+
+.pagination ::ng-deep .ngx-pagination .current,
+.pagination ::ng-deep .ngx-pagination li,
+.pagination ::ng-deep .ngx-pagination .previous a,
+.pagination ::ng-deep .ngx-pagination .next a {
+    background-color: white;
+    margin: 0 5px;
+    padding: 4px 15px;
+    border: 1px solid #ddd;
+    color: #333;
+    box-shadow: 0px 0px 10px rgba(255, 255, 255, 0.5);
+}
+
+.pagination ::ng-deep .ngx-pagination .current {
+    background-color: #c43c3c;
+    color: white;
+}
+
+.pagination ::ng-deep  .ngx-pagination li:hover,
+.pagination ::ng-deep  .ngx-pagination .previous a:hover,
+.pagination ::ng-deep .ngx-pagination .next a:hover {
+    background-color: #ddd;
+}
+
+
 
 
 .logo {
     
+    margin-top: 20px;
     width: 500px;
+    
 }
 
-.centralizacao {
-
-    margin-bottom: 50px;
+.balcao {
+    margin-top: 70px;
 }
 
 
@@ -26,47 +77,9 @@
     }
 }
 
-/* Toggle switch para abrir e fechar as mesas */
 
-.toggle {
-    display: none;
-}
 
-.toggle + label {
-    width: 40px;
-    height: 24px;
-    background-color: rgb(134, 134, 134);
-    display: block;
-    position: relative;
-    border-radius: 20px;
-    padding: 10px;
-    transition: 200ms;
-    cursor: pointer;
-}
 
-.toggle + label:before {
-    content: '';
-    position: absolute; 
-    width: 20px;
-    height: 20px;
-    background: white;
-    display: block;   
-    border-radius: 50%;
-    right: unset;
-    left: 2px;
-    top: 2px;
-    transition: 200ms;
-}
-
-.toggle:checked + label {
-    background-color: rgb(238, 36, 36);
-}
-
-.toggle:checked + label:before {
-    content: '';
-    left: calc(100% - 22px);
-    box-shadow: 0 3px 5px rgb(240, 119, 119);
-}
 
 @media screen and (max-width: 1000px) {
     .logo {
@@ -83,6 +96,16 @@
         align-items: flex-start;
         width: 350px;
     }
+
+    .container-fluid {
+        max-width: 2100px;
+          height: 1700px;
+          background-image: url('/assets/img/bck.webp');
+          background-repeat: repeat;
+          background-size: 500px
+      }
+
+  
   }
 
   
@@ -91,3 +114,47 @@
 
     width: 260px;
 }
+
+.cardBalcao {
+    margin-right: 100px;
+    
+}
+
+h5 {
+    text-align: center; 
+    background-color: rgba(255, 0, 0, 0.4);
+    box-shadow: 0px 0px 10px 5px rgba(92, 88, 88, 0.5); 
+    backdrop-filter: blur(5px); 
+    border-radius: 20px; 
+    width: 12%; 
+    margin: 0 auto; 
+    padding-top: 0.2%;
+  }
+  
+
+  h3 {
+    text-align: center; 
+    background-color: rgba(218, 41, 41, 0.6); 
+    box-shadow: 0px 0px 10px 5px rgba(92, 88, 88, 0.5); 
+    backdrop-filter: blur(5px); 
+    border-radius: 20px;
+    width: 40%; 
+    margin: 0 auto; 
+    padding-top: 0.2%;
+    margin-top: 2%;
+  }
+
+
+  .btnpedido {
+    box-shadow: 0px 0px 10px 5px rgba(156, 20, 20, 0.5);
+}
+
+.btnmais {
+    box-shadow: 0px 0px 10px 5px rgba(105, 163, 91, 0.5);
+}
+
+.card {
+    background-color: rgba(255, 255, 255, 0.9); 
+  }
+  
+  

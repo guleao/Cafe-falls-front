@@ -1,66 +1,119 @@
-<app-navbarvendas></app-navbarvendas>
+<app-navbarvendasdois></app-navbarvendasdois>
 
 <div class="container-fluid">
-  <div class="row justify-content-center">
-    <div class="col-12 text-center">
-      <h1 class="p-2 display-5 animate__animated animate__bounceIn">
-        Realize o pedido no balcão
-      </h1>
-    </div>
-  </div>
-
-  <div class="row d-flex d-md-flex justify-content-md-center mt-5">
-    <div class="col-lg-6 col-12 col-md-6 text-center">
+  <div class="row d-flex justify-content-md-center">
+    <div class="col-4 col-lg-6 col-md-6 text-center me-4 mt-5">
       <img
         src="assets/img/logo.png"
-        class="logo animate__animated animate__pulse"
+        class="logo animate__animated animate__pulse me-5"
       />
     </div>
-
-    <div class="col-lg-6 col-md-12">
+    <div class="col-4 col-lg-5 col-md-6 balcao">
       <div
-        class="row d-flex d-md-flex justify-content-md-center justify-content-center"
+        class="card shadow m-1 p-1 animate__animated animate__bounceIn"
+        style="height: 500px; width: 300px"
       >
-        <div class="col-6 col-md-3">
-          <div
-            class="card shadow m-1 p-1 animate__animated animate__bounceIn"
-            style="height: 500px; width: 300px"
-          >
-            <h5 class="card-title d-flex justify-content-center">Balcão</h5>
-            <div class="card-body d-flex align-items-center">
-              <img
-                class="img d-flex align-items-center"
-                src="/assets/img/balcao.png"
-              />
-            </div>
-            <button
-              class="btn btn-danger btn1 d-flex justify-content-center"
-              routerLink="/pedido"
-              routerLinkActive="active"
-              (click)="fazerPedidoNoBalcao()"
-            >
-              Fazer Pedido
-            </button>
-          </div>
+        <h3 class="card-title text-center">Balcão</h3>
+        <div class="card-body d-flex align-items-center">
+          <img
+            class="img d-flex align-items-center"
+            src="/assets/img/balcao.png"
+          />
         </div>
-        <div class="col-lg-9 col-md-12 d-md-flex justify-content-md-center">
-          <h5 class="card-title">Pedidos Finalizados</h5>
-          <div
-            class="card shadow m-1 p-1 animate__animated animate__bounceIn"
-            *ngFor="let pedido of pedidosFinalizados; let i = index"
-            style="width: 500px"
+        <button
+          class="btn btn-danger btnpedido btn1 d-flex justify-content-center"
+          routerLink="/pedido"
+          routerLinkActive="active"
+          (click)="fazerPedidoNoBalcao()"
+        >
+          Fazer Pedido
+        </button>
+      </div>
+    </div>
+    <div class="col-lg-12 col-md-12 text-center mt-5">
+      <h5 class="mb-2 pb-2 text-white">Pedidos Finalizados</h5>
+      <table class="table">
+        <thead>
+          <tr>
+            <th>ID:</th>
+            <th>Data:</th>
+            <th>Valor Total:</th>
+            <th>Ver mais:</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr
+            *ngFor="
+              let pedido of pedidosFinalizados
+                | paginate : { itemsPerPage: 6, currentPage: p };
+              let i = index
+            "
           >
-            <div class="card-body">
-              <p class="card-text">ID: {{ pedido.idPedido }}</p>
-              <p class="card-text">Data: {{ pedido.Data }}</p>
-              <p class="card-text">Valor Total: {{ pedido.Valor_total }}</p>
-              <p class="card-text">
-                Forma de Pagamento:
-                {{ pedido.formasdePagamento[pedido.Forma_pagamento] }}
-              </p>
-            </div>
-          </div>
-        </div>
+            <td>{{ pedido.idPedido }}</td>
+            <td>{{ pedido.Data }}</td>
+            <td>
+              {{
+                pedido.Valor_total.toLocaleString("pt-BR", {
+                  style: "currency",
+                  currency: "BRL"
+                })
+              }}
+            </td>
+            <td>
+              <button
+                class="btn btn-success btnmais"
+                (click)="abrirModalVerMais(pedido)"
+              >
+                +
+              </button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      <div class="">
+        <pagination-controls
+          class="pagination"
+          (pageChange)="p = $event"
+          previousLabel="Anterior"
+          nextLabel="Próximo"
+        ></pagination-controls>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div
+  class="modal animate__animated animate__bounceInUp"
+  tabindex="-1"
+  id="modalMais"
+>
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header d-flex justify-content-center">
+        <h5 class="modal-title">Mais sobre o pedido</h5>
+      </div>
+      <div class="modal-body">
+        <p>ID: {{ pedidoAtual?.idPedido }}</p>
+        <p>Data: {{ pedidoAtual?.Data }}</p>
+        <p>Valor Total: {{ pedidoAtual?.Valor_total }}</p>
+        <h5>Itens do Pedido:</h5>
+        <ul>
+          <li *ngFor="let item of pedidoAtual?.itens">
+            <p>Nome do Produto: {{ item.produto.Nome_produto }}</p>
+            <p>Quantidade: {{ item.quantidade }}</p>
+            <!-- Adicione aqui outros campos conforme necessário -->
+          </li>
+        </ul>
+      </div>
+      <div class="modal-footer d-flex justify-content-center">
+        <button
+          type="button"
+          class="btn btn btn-outline-dark"
+          data-bs-dismiss="modal"
+        >
+          Cancelar
+        </button>
+        <button type="button" class="btn btn-danger">Adicionar Item</button>
       </div>
     </div>
   </div>

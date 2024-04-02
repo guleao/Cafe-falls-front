@@ -1,10 +1,6 @@
 <app-navbarmesas></app-navbarmesas>
 
 <div class="container-fluid">
-  <div class="row mt-2 mb-2 text-center animate__animated animate__bounceIn">
-    <h1>Realizar pedido</h1>
-  </div>
-
   <div class="row d-flex justify-content-center mb-2">
     <div class="ms-1 mb-2">
       <div class="col-lg-12 d-flex mt-3 justify-content-center">
@@ -27,7 +23,7 @@
     <!-- Visualização de categorias -->
     <div
       *ngIf="!visualizandoProdutos"
-      class="col-lg-6 animate__animated animate__bounceIn"
+      class="col-lg-6 animate__animated animate__bounceIn ajuste"
     >
       <div class="col-lg-12">
         <div
@@ -36,7 +32,7 @@
           <div
             *ngFor="let categoria of categorias"
             class="card m-2"
-            style="width: 10rem"
+            style="width: 12rem"
           >
             <!-- Conteúdo da categoria -->
             <img
@@ -48,7 +44,7 @@
               <h5 class="card-title">{{ categoria.Nome_categoria }}</h5>
               <p class="card-text">{{ categoria.Descricao }}</p>
               <button
-                class="btn btn-danger"
+                class="btn btn-danger btnselect"
                 (click)="selecionarCategoria(categoria)"
               >
                 Selecionar
@@ -62,15 +58,18 @@
     <!-- Visualização de produtos -->
     <div
       *ngIf="visualizandoProdutos"
-      class="col-lg-6 animate__animated animate__bounceIn"
+      class="col-lg-6 animate__animated animate__bounceIn ajuste"
     >
       <div class="col-lg-12 d-flex justify-content-center">
-        <button
-          class="btn btn-dark me-4 botaovolta"
-          (click)="voltarParaCategorias()"
-        >
-          Voltar para categorias
-        </button>
+        <div class="d-flex justify-content-center align-items-center">
+          <button
+            class="btn btn-danger text-dark me-4 botaovolta btnvoltar"
+            (click)="voltarParaCategorias()"
+          >
+            Voltar para categorias
+          </button>
+        </div>
+
         <div class="row d-flex scrolling-wrapper">
           <div
             *ngFor="let produto of listaProdutosFiltrados"
@@ -101,7 +100,7 @@
                 {{ produto.Descricao }}
               </p>
               <button
-                class="btn btn-success"
+                class="btn btn-success btnconf"
                 (click)="adicionaroAoPedido(produto)"
               >
                 Adicionar ao pedido
@@ -114,7 +113,7 @@
 
     <!-- Tabela de produtos -->
     <div class="col-lg-5 mb-sm-5">
-      <table class="table border animate__animated animate__bounceIn">
+      <table class="table animate__animated animate__bounceIn">
         <thead>
           <tr>
             <th scope="col">ID:</th>
@@ -138,7 +137,9 @@
               }}
             </td>
             <td>
-              <button class="btn btn-danger" (click)="removerItem(i)">X</button>
+              <button class="btn btn-danger btnselect" (click)="removerItem(i)">
+                X
+              </button>
             </td>
           </tr>
         </tbody>
@@ -160,13 +161,13 @@
 
       <div class="d-flex justify-content-center">
         <button
-          class="btn btn-secondary m-2 animate__animated animate__bounceIn"
+          class="btn btn-secondary m-2 animate__animated animate__bounceIn btnlimpar"
           (click)="limparPedido()"
         >
           Limpar pedido
         </button>
         <button
-          class="btn btn-success m-2 animate__animated animate__bounceIn"
+          class="btn btn-success m-2 animate__animated animate__bounceIn btnconf"
           (click)="OpenModalPagamento()"
         >
           Confirmar Pedido
@@ -205,12 +206,13 @@
             [(ngModel)]="pedido.Forma_pagamento"
           >
             <option
-              *ngFor="let forma of pedido.formasdePagamento; index as i"
+              *ngFor="let forma of pedidoService.formasDePagamento; index as i"
               [value]="i"
             >
               {{ forma }}
             </option>
           </select>
+
           <p class="input-5 mb-2">Observações:</p>
           <textarea
             class="caixa mb-2"

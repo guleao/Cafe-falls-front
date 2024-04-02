@@ -2,14 +2,6 @@
 * {
     margin: 0;
     padding: 0;
+    
 }
 
-.animWidthMais {
-    transition: transform .2s;
-    cursor: pointer;
-  }
-  
-.animWidthMais:hover {
-transform: scale(1.2);
-}
-  

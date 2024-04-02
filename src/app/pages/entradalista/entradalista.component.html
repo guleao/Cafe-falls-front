@@ -28,25 +28,9 @@
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let entradaProduto of listaFiltrada">
-          <td>{{ entradaProduto.idEntrada_Produto }}</td>
-          <td>{{ entradaProduto.idProduto }}</td>
-          <td>{{ entradaProduto.Quantidade }}</td>
-          <td>
-            {{
-              entradaProduto.Preco.toLocaleString("pt-BR", {
-                style: "currency",
-                currency: "BRL"
-              })
-            }}
-          </td>
-          <td>{{ entradaProduto.Data }}</td>
-          <td>{{ entradaProduto.Validade }}</td>
-          <td>{{ entradaProduto.Informacoes_adicionais }}</td>
-          <td>
-            <button class="btn btn-outline-danger">Editar</button>
-            <button class="btn btn-outline-dark ms-2">Excluir</button>
-          </td>
+        <tr>
+          <button class="btn btn-outline-danger">Editar</button>
+          <button class="btn btn-outline-dark ms-2">Excluir</button>
         </tr>
       </tbody>
     </table>

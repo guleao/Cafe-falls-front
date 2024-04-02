@@ -1,3 +1,65 @@
+.container-fluid {
+  max-width: 2000px;
+    height: 1200px;
+    background-image: url('/assets/img/bck.webp');
+    background-repeat: repeat;
+    background-size: 500px
+}
+
+@media screen and (max-width: 425px) {
+  
+  .container-fluid {
+        width:750px;
+        height: 1900px;
+        background-image: url('/assets/img/bck.webp');
+        background-repeat: repeat;
+        background-size: 500px
+    }
+
+
+}
+
+
+  
+@media screen and (min-width: 426px) and (max-width: 768px) {
+  
+  .container-fluid {
+      max-width: 2100px;
+        height: 900px;
+        background-image: url('/assets/img/bck.webp');
+        background-repeat: repeat;
+        background-size: 500px
+    }
+
+
+}
+
+@media screen and (min-width: 769px) and (max-width: 1440px) {
+ 
+  .container-fluid {
+      max-width: 2100px;
+        height: 800px;
+        background-image: url('/assets/img/bck.webp');
+        background-repeat: repeat;
+        background-size: 500px
+    }
+
+
+}
+
+@media screen and (min-width: 1440px) {
+ 
+  .container-fluid {
+      max-width: 2100px;
+        height: 800px;
+        background-image: url('/assets/img/bck.webp');
+        background-repeat: repeat;
+        background-size: 500px
+    }
+
+
+}
+
 
 .scrolling-wrapper {
     max-height: 600px;
@@ -36,18 +98,44 @@
   box-shadow: 1px 1px 5px 0px rgb(73, 73, 73);
 }
 
-.botaovolta {
-  max-width: 100px;
-  height: 600px;
-}
+
 
 .precoFinal {
   display: flex;
   justify-content: center;
   align-items: center;
   border-radius: 30px;
-
+  box-shadow: 0px 0px 10px 5px rgba(104, 102, 102, 1);
 
   font-weight: 600;
   margin-top: 10px;
+}
+
+table { 
+  background-color: rgba(255, 255, 255, 0.9); 
+  box-shadow: 0px 0px 10px 5px rgba(104, 102, 102, 1);
+  border-radius: 20px;
+}
+
+.ajuste {
+
+  border-radius: 30px;
+  background-color: rgba(255, 255, 255, 0.8); 
+}
+
+.btnselect {
+  box-shadow: 0px 0px 10px 5px rgba(156, 20, 20, 0.5);
+}
+.btnlimpar {
+  box-shadow: 0px 0px 10px 5px rgba(104, 102, 102, 0.5);
+}
+.btnconf {
+  box-shadow: 0px 0px 10px 5px rgba(39, 156, 49, 0.5);
+}
+
+.btnvoltar {
+
+  box-shadow: 0px 0px 10px 5px rgba(156, 20, 20, 0.5);
+  width: 100px;
+  height: 400px;
 }

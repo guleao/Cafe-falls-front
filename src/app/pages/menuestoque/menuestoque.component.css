@@ -1,5 +1,16 @@
-
+* {
+  padding: 0;
+  margin: 0;
+}
 /* Ajeitar menu */
+.container {
+  max-width: 2000px;
+    height: 930px;
+    background-image: url('/assets/img/bck.webp');
+    background-repeat: repeat;
+    background-size: 400px;
+}
+
 
 .distancia {
     margin-bottom: 3px;
@@ -74,7 +85,22 @@
       width: 200px;
       height: 200px;
     }
+
+    .container {
+      max-width: 2000px;
+        height: 750px;
+        background-image: url('/assets/img/bck.webp');
+        background-repeat: repeat;
+        background-size: 400px;
+    }
   }
 
+  .listaopcc {
+    
+    cursor: pointer;
+    margin-left: 0px;
+    border-radius: 10px;
+    box-shadow: inset 0px 0px 10px 10px rgba(211, 76, 76, 0.5); /* Sombra ao redor do elemento */
+}
 
 

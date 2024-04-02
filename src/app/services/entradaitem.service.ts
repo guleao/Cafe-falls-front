@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { EntradaProduto } from '../models/entradaitem';
+import { EntradaProduto } from '../models/entradaproduto';
 import { BehaviorSubject } from 'rxjs';
 import axios from 'axios';
 

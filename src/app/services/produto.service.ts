@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Produto } from '../models/produto';
-import { BehaviorSubject, Observable, Subject } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
 import axios from 'axios';
 
 @Injectable({
@@ -28,7 +28,7 @@ export class ProdutoService {
           Preco_venda: item.Preco_venda,
           Preco_compra: item.Preco_compra,
           Preco_lojista: item.Preco_lojista,
-          Imagem: null,
+          Imagem: item.Imagem,
           idCategoria: item.idCategoria,
         };
         return produto;
