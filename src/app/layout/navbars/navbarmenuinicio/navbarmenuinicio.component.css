@@ -1,6 +1,7 @@
 .navbar {
     background-color: #BD0914;
     padding-bottom: 1%;
+    box-sizing: border-box;
 }
 
 
@@ -12,8 +13,9 @@ h1{
 @media screen and (min-width: 1600px) {
     .navbar {
         background-color: #BD0914;
-        padding-bottom: 2.5%;
-        width: 1917px;
+      
+       
+        width: 100%;
     }
   }
 
@@ -21,6 +23,6 @@ h1{
     .navbar {
         background-color: #BD0914;
         padding-bottom: 2.5%;
-        width: 780px;
+        width: 100%;
     }
 }

@@ -78,7 +78,9 @@ table {
 }
 
 
-
+.titulo {
+    width: 300px;
+}
 
 
 @media screen and (max-width: 1000px) {

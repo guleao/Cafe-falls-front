@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { RouterLink, RouterLinkActive } from '@angular/router';
 import { NgFor } from '@angular/common';
 import { PedidoService } from '../../services/pedido.service';
@@ -35,7 +35,11 @@ export class VendasComponent implements OnInit {
   itensPedidoAtual: ItemPedido[] = [];
   p: number = 1;
 
-  constructor(private pedidoService: PedidoService, private router: Router) {}
+  constructor(
+    private pedidoService: PedidoService,
+    private router: Router,
+    private cd: ChangeDetectorRef
+  ) {}
 
   ngOnInit(): void {
     this.pedidoService
@@ -61,20 +65,29 @@ export class VendasComponent implements OnInit {
 
   async abrirModalVerMais(pedido: Pedido) {
     this.pedidoAtual = pedido;
+
+    // Buscar os itens do pedido apenas quando o usuário clica em "Ver mais"
     this.itensPedidoAtual = await this.pedidoService.getItensPedido(
       pedido.idPedido
     );
 
-    // Buscar os detalhes do produto para cada item
-    for (let item of this.itensPedidoAtual) {
-      item.produto = await this.pedidoService.getProduto(
-        item.produto.idProduto
-      );
-    }
+    this.cd.detectChanges(); // Adicione esta linha
 
     const modalDiv = document.getElementById('modalMais');
     if (modalDiv != null) {
       modalDiv.style.display = 'block';
+    }
+  }
+
+  async fecharModal() {
+    // Limpar os dados do pedido atual e dos itens do pedido
+    this.pedidoAtual = null;
+    this.itensPedidoAtual = [];
+
+    // Fechar a modal
+    const modalDiv = document.getElementById('modalMais');
+    if (modalDiv != null) {
+      modalDiv.style.display = 'none';
     }
   }
 }

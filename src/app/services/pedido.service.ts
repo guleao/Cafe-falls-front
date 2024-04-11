@@ -177,14 +177,15 @@ export class PedidoService {
       const itens: ItemPedido[] = response.data.map((item: any) => {
         return {
           idPedido: item.idPedido,
-          quantidade: item.quantidade,
-          produto: { idProduto: item.idProduto }, // Ajuste esta linha
+          quantidade: item.Quantidade,
+          produto: { idProduto: item.idProduto }, // Inicialmente, apenas o idProduto é conhecido
         };
       });
 
       // Buscar os detalhes do produto para cada item
       for (let item of itens) {
-        item.produto = await this.getProduto(item.produto.idProduto);
+        const produto = await this.getProduto(item.produto.idProduto);
+        item.produto = produto; // Atribuir os detalhes do produto ao item
       }
 
       return itens;
@@ -197,7 +198,7 @@ export class PedidoService {
   async getProduto(idProduto: number): Promise<Produto> {
     try {
       const response = await this.http.get(`/produtos/${idProduto}`);
-      return response.data;
+      return response.data.data;
     } catch (error) {
       console.error('Erro ao obter o produto:', error);
       throw error;
