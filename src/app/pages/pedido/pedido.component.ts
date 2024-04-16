@@ -66,13 +66,22 @@ export class PedidoComponent implements OnInit {
   }
 
   adicionaroAoPedido(produto: Produto) {
+    // Verifique se o produto existe na lista de produtos
+    const produtoExistente = this.lista.find(
+      (item) => item.idProduto === produto.idProduto
+    );
+    if (!produtoExistente) {
+      alert('Produto não encontrado');
+      return;
+    }
+
     const itemExistente = this.itensPedido.find(
       (item) => item.produto.idProduto === produto.idProduto
     );
     if (itemExistente) {
       itemExistente.quantidade++;
     } else {
-      this.itensPedido.push(new ItemPedido(produto, 1)); // Remova produto.idProduto
+      this.itensPedido.push(new ItemPedido(produto, 1));
     }
     this.pedido.Valor_total += produto.Preco_venda;
   }
