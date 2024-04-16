@@ -59,6 +59,14 @@ export class VendasComponent implements OnInit {
     );
   }
 
+  formatarData(data: string): string {
+    const dataFormatada = new Date(data);
+    const dia = dataFormatada.getDate().toString().padStart(2, '0');
+    const mes = (dataFormatada.getMonth() + 1).toString().padStart(2, '0'); // Os meses começam do 0 em JavaScript, então adicionamos 1
+    const ano = dataFormatada.getFullYear();
+    return `${dia}/${mes}/${ano}`;
+  }
+
   fazerPedidoNoBalcao(): void {
     this.router.navigate(['/pedido']);
   }

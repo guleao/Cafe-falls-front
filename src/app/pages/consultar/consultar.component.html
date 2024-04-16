@@ -2,32 +2,24 @@
 
 <div class="container-fluid">
   <div class="form-group">
-    <input
-      type="text"
-      class="form-control mb-3"
-      placeholder="Pesquisar entrada de produto"
-    />
-  </div>
-  <div>
     <table class="table">
       <thead>
         <tr>
           <th>ID:</th>
           <th>Data:</th>
           <th>Valor Total:</th>
-          <th>Ver mais:</th>
         </tr>
       </thead>
       <tbody>
         <tr
           *ngFor="
             let pedido of pedidosFinalizados
-              | paginate : { itemsPerPage: 6, currentPage: p };
+              | paginate : { itemsPerPage: 10, currentPage: p };
             let i = index
           "
         >
           <td>{{ pedido.idPedido }}</td>
-          <td>{{ pedido.Data }}</td>
+          <td>{{ formatarData(pedido.Data) }}</td>
           <td>
             {{
               pedido.Valor_total.toLocaleString("pt-BR", {
@@ -36,19 +28,99 @@
               })
             }}
           </td>
-          <td>
-            <button class="btn btn-success btnmais">+</button>
-          </td>
         </tr>
       </tbody>
     </table>
-    <div class="">
+    <div class="d-flex justify-content-center">
       <pagination-controls
         class="pagination"
         (pageChange)="p = $event"
         previousLabel="Anterior"
         nextLabel="Próximo"
       ></pagination-controls>
+    </div>
+  </div>
+
+  <button
+    class="d-flex justify-content-center btn btn-danger"
+    (click)="openModalComparacao()"
+  >
+    Comparar pedidos
+  </button>
+</div>
+<div>
+  <!-- Modal de Comparação -->
+  <div
+    class="modal animate__animated animate__bounceInUp"
+    tabindex="-1"
+    id="modalComparacao"
+  >
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header d-flex justify-content-center">
+          <h5 class="modal-title">Comparação de Pedidos</h5>
+        </div>
+        <div class="modal-body">
+          <p>
+            Na comparação de pedidos serão mostrados á você o lucro total de
+            determinado dia escolhido por você, ele irá mostrar o lucro total de
+            todas as datas dentro desse periodo selecionado.
+          </p>
+          <div class="row d-flex justify-content-center">
+            <p class="input-5 mb-2">Data inicial:</p>
+            <input
+              type="date"
+              class="caixa mb-2"
+              id="initDate"
+              [(ngModel)]="initDate"
+            />
+
+            <p class="input-5 mb-2">Data final:</p>
+            <input
+              type="date"
+              class="caixa mb-2"
+              id="endDate"
+              [(ngModel)]="endDate"
+            />
+
+            <button
+              (click)="getPedidos()"
+              type="button"
+              class="btn btn-outline-danger"
+            >
+              Buscar Pedidos
+            </button>
+          </div>
+
+          <!-- Tabela de Pedidos -->
+          <table class="table mt-3">
+            <thead>
+              <tr>
+                <th>Data</th>
+                <th>Valor Total</th>
+                <th>Forma de Pagamento</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let pedido of pedidos">
+                <td>{{ formatarData(pedido.Data) }}</td>
+                <td>{{ pedido.Valor_total }}</td>
+                <td>{{ pedido.Forma_pagamento }}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="modal-footer d-flex justify-content-center">
+          <button
+            (click)="closeModalComparacao()"
+            type="button"
+            class="btn btn btn-outline-dark"
+            data-bs-dismiss="modal"
+          >
+            Finalizar comparação
+          </button>
+        </div>
+      </div>
     </div>
   </div>
 </div>

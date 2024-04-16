@@ -50,7 +50,7 @@
             "
           >
             <td>{{ pedido.idPedido }}</td>
-            <td>{{ pedido.Data }}</td>
+            <td>{{ formatarData(pedido.Data) }}</td>
             <td>
               {{
                 pedido.Valor_total.toLocaleString("pt-BR", {

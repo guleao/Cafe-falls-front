@@ -1,7 +1,7 @@
 .navbar {
     background-color: #BD0914;
     padding-bottom: 1%;
-    max-width: 100%;
+    max-width: 1920px;
     box-sizing: border-box;
 }
 
@@ -19,7 +19,7 @@ h1{
         background-color: #BD0914;
       
        
-        width: 100%;
+        width: 1920px;
     }
   }
 
@@ -27,6 +27,6 @@ h1{
     .navbar {
         background-color: #BD0914;
         padding-bottom: 2.5%;
-        width: 100%;
+        width: 1920px;
     }
 }

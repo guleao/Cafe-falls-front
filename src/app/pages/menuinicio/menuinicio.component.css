@@ -9,6 +9,7 @@
 
 .container-fluid {
     max-width: 2000px;
+    
     height: 930px;
     background-image: url('/assets/img/bck.webp');
     background-repeat: repeat;
